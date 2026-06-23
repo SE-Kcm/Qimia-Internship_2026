@@ -1,0 +1,22 @@
+<svg version="1.1" id="Ebene_1" xmlns:x="ns_extend;" xmlns:i="ns_ai;" xmlns:graph="ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56 66" style="enable-background:new 0 0 56 66;" xml:space="preserve">
+ <style type="text/css">
+  .st0{fill:#E20074;}
+ </style>
+ <metadata>
+  <sfw xmlns="ns_sfw;">
+   <slices>
+   </slices>
+   <sliceSourceBounds bottomLeftOrigin="true" height="66" width="56" x="-12" y="13.5">
+   </sliceSourceBounds>
+  </sfw>
+ </metadata>
+ <g>
+  <path class="st0" d="M34,52.1V4.6h0.7C46,4.6,52,11.2,52,21.8v0.7h4V0H0v22.4h4v-0.7C4,11.2,10,4.6,21.3,4.6H22v47.5
+		c0,6.6-2.7,9.2-9.3,9.2h-2V66h34.7v-4.6h-2C36.7,61.4,34,58.7,34,52.1z">
+  </path>
+  <rect y="30.4" class="st0" width="13.3" height="13.2">
+  </rect>
+  <rect x="42.7" y="30.4" class="st0" width="13.3" height="13.2">
+  </rect>
+ </g>
+</svg>
