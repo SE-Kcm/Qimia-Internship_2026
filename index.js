@@ -1,15 +1,30 @@
-let programmingFundamentals = 1;
-let databaseSystems = 2;
-let webDevelopment = 3;
-let mathematics = 4;
-let algorithms = 5;
+let Course1 =  {
+    id: 1,
+    name: 'programmingFundamentals'
+}
+let Course2 =  {
+    id: 2,
+    name: 'webDevelopment'
+}
+let Course3 =  {
+    id: 3,
+    name: 'mathematics'
+}
+let Course4 =  {
+    id: 4,
+    name: 'algorithms'
+}
+let Course5 =  {
+    id: 5,
+    name: 'databaseSystems'
+}
 
 let student = {
     firstName: 'Sude',
     lastName: 'Koçman',
     age: 25,
     major: 'Computer Science',
-    courses: [mathematics, databaseSystems]
+    courses: [Course3, Course5]
 }
 
 function listStudentInformation (){
@@ -20,7 +35,7 @@ function listStudentInformation (){
     listAllCourses();
 }
 function listAllCourses () {
-    student.courses.forEach(course => { console.log(course) });
+    student.courses.forEach(course => { console.log(course.name) });
 }
 
 function addNewCourse (course){
@@ -40,6 +55,6 @@ function deleteCourse(course){
 
 listStudentInformation();
 listAllCourses();
-addNewCourse(algorithms);
-deleteCourse(databaseSystems);
-deleteCourse(webDevelopment);
+addNewCourse(Course1);
+deleteCourse(Course5);
+deleteCourse(Course2);
