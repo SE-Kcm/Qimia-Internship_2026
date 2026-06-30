@@ -1,20 +1,20 @@
-let Course1 =  {
+let course1 =  {
     id: 1,
     name: 'programmingFundamentals'
 }
-let Course2 =  {
+let course2 =  {
     id: 2,
     name: 'webDevelopment'
 }
-let Course3 =  {
+let course3 =  {
     id: 3,
     name: 'mathematics'
 }
-let Course4 =  {
+let course4 =  {
     id: 4,
     name: 'algorithms'
 }
-let Course5 =  {
+let course5 =  {
     id: 5,
     name: 'databaseSystems'
 }
@@ -24,7 +24,7 @@ let student = {
     lastName: 'Koçman',
     age: 25,
     major: 'Computer Science',
-    courses: [Course3, Course5]
+    courses: [course3, course5]
 }
 
 function listStudentInformation (){
@@ -55,6 +55,6 @@ function deleteCourse(course){
 
 listStudentInformation();
 listAllCourses();
-addNewCourse(Course1);
-deleteCourse(Course5);
-deleteCourse(Course2);
+addNewCourse(course1);
+deleteCourse(course5);
+deleteCourse(course2);
