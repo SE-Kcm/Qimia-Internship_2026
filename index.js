@@ -4,7 +4,7 @@ let webDevelopment = 3;
 let mathematics = 4;
 let algorithms = 5;
 
-let Student = {
+let student = {
     firstName: 'Sude',
     lastName: 'Koçman',
     age: 25,
@@ -13,28 +13,28 @@ let Student = {
 }
 
 function listStudentInformation (){
-    console.log('First name: ' + Student.firstName);
-    console.log('Last name: ' + Student.lastName);
-    console.log('Age: ' + Student.age);
-    console.log('Major: ' + Student.major);
+    console.log('First name: ' + student.firstName);
+    console.log('Last name: ' + student.lastName);
+    console.log('Age: ' + student.age);
+    console.log('Major: ' + student.major);
     listAllCourses();
 }
 function listAllCourses () {
-    Student.courses.forEach(course => { console.log(course) });
+    student.courses.forEach(course => { console.log(course) });
 }
 
 function addNewCourse (course){
-    Student.courses.push(course);
+    student.courses.push(course);
     listAllCourses();
 }
 
 function deleteCourse(course){
-    const ind = Student.courses.indexOf(course);
+    const ind = student.courses.indexOf(course);
     if(ind == -1){
         console.log('Course not found');
         return;
     }
-    Student.courses.splice(ind,1)
+    student.courses.splice(ind,1)
     listAllCourses();
 }
 
