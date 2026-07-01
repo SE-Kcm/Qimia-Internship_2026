@@ -1,4 +1,3 @@
-let tasks = []
 let nextId = 1;
 
 const addButton = document.getElementById("addButton");
@@ -18,8 +17,7 @@ function addNewTask(taskName){
         name: taskName.value,
         id: nextId
     }
-    
-    tasks.push(task);
+
     nextId++;
     const div = document.createElement("div");
     div.classList.add("taskbox");
@@ -27,8 +25,7 @@ function addNewTask(taskName){
 
     const input = document.createElement("input");
     input.type = "checkbox";
-    //input.value = "checked";
-    input.classList.add("check")
+    input.classList.add("check");
 
     const label = document.createElement("label");
     label.classList.add("label");
@@ -61,7 +58,4 @@ function deleteTask(id){
     element.remove();
 
     
-}
-function listAllTasks(){
- 
 }
