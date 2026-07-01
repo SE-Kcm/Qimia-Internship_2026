@@ -8,7 +8,7 @@ addButton.addEventListener("click", () => {
     taskName.value = "";
 });
 
-function addNewTask(taskNname){
+function addNewTask(taskName){
     //const taskName = document.getElementById("taskName"); 
     if(taskName.value.length == 0){
         alert("Please enter a task name!");
