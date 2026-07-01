@@ -2,10 +2,14 @@ let tasks = []
 let nextId = 1;
 
 const addButton = document.getElementById("addButton");
-addButton.addEventListener("click", addNewTask);
+const inputValie = document.getElementById("taskName");
+addButton.addEventListener("click", () => {
+    addNewTask(taskName);
+    taskName.value = "";
+});
 
-function addNewTask(){
-    const taskName = document.getElementById("taskName"); 
+function addNewTask(taskNname){
+    //const taskName = document.getElementById("taskName"); 
     if(taskName.value.length == 0){
         alert("Please enter a task name!");
         return;
@@ -23,18 +27,24 @@ function addNewTask(){
 
     const input = document.createElement("input");
     input.type = "checkbox";
-    input.value = "checked";
+    //input.value = "checked";
     input.classList.add("check")
 
     const label = document.createElement("label");
     label.classList.add("label");
     label.textContent = task.name;
 
-    input.addEventListener("click", () => label.classList.add("line-through"));
+    input.addEventListener("click", () => {
+        if(input.checked){
+            label.classList.add("line-through", "text-gray-400");
+        }else{
+            label.classList.remove("line-through", "text-gray-400");
+        }
+    });
 
     const btn = document.createElement("button");
     btn.classList.add("btn-delete");
-    btn.textContent = "Delete";
+    btn.textContent = "DELETE";
 
     btn.addEventListener("click", () => deleteTask(task.id));
 
