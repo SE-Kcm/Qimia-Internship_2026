@@ -2,10 +2,10 @@ let tasks = []
 let nextId = 1;
 
 const addButton = document.getElementById("addButton");
-const inputValie = document.getElementById("taskName");
+const inputValue = document.getElementById("taskName");
 addButton.addEventListener("click", () => {
-    addNewTask(taskName);
-    taskName.value = "";
+    addNewTask(inputValue);
+    inputValue.value = "";
 });
 
 function addNewTask(taskName){
