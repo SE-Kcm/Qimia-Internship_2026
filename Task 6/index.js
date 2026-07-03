@@ -17,13 +17,8 @@ class TaskManager{
 
     constructor(){
         this.nextId = 1;
-        const addButton = document.getElementById("addButton");
-        const inputValue = document.getElementById("taskName");
-        addButton.addEventListener("click", () => {
-            this.addNewTask(inputValue.value);
-            inputValue.value = "";
-        });
         this.ui = new UI();
+        this.ui.createAddButton(this);
     }
 
     createTask(taskName){
@@ -38,42 +33,16 @@ class TaskManager{
         }
         const task = this.createTask(taskName);
 
-        // const div = document.createElement("div");
-        // div.classList.add("taskbox");
-        // div.id = task.getId();
         const div = this.ui.createDiv(task.getId());
 
-        // const input = document.createElement("input");
-        // input.type = "checkbox";
-        // input.classList.add("check");
         const input = this.ui.createInput();
 
-        // const label = document.createElement("label");
-        // label.classList.add("label");
-        // label.textContent = task.getName();
         const label = this.ui.createLabel(task.getName());
 
-        input.addEventListener("click", () => {
-            if(input.checked){
-                label.classList.add("line-through", "text-gray-400");
-            }else{
-                label.classList.remove("line-through", "text-gray-400");
-            }
-        });
+        this.ui.checkboxAction(input, label);
 
-        // const btn = document.createElement("button");
-        // btn.classList.add("btn-delete");
-        // btn.textContent = "DELETE";
-        const btn = this.ui.createButton();
+        const btn = this.ui.createDeleteButton(this,task.getId());
 
-        btn.addEventListener("click", () => this.deleteTask(task.getId()));
-
-        // div.appendChild(input);
-        // div.appendChild(label);
-        // div.appendChild(btn);
-
-        // const taskList = document.getElementById("taskList");
-        // taskList.appendChild(div);
         this.ui.createTaskBox(input, label, btn, div);
     }
 
@@ -95,6 +64,15 @@ class UI{
         return div;
     }
 
+    createAddButton(taskManager){
+        const addButton = document.getElementById("addButton");
+        const inputValue = document.getElementById("taskName");
+        addButton.addEventListener("click", () => {
+            taskManager.addNewTask(inputValue.value);
+            inputValue.value = "";
+        });
+    }
+
     createInput(){
         const input = document.createElement("input");
         input.type = "checkbox";
@@ -107,10 +85,11 @@ class UI{
         label.textContent = taskName;
         return label;
     }
-    createButton(){
+    createDeleteButton(taskManager, taskId){
         const btn = document.createElement("button");
         btn.classList.add("btn-delete");
         btn.textContent = "DELETE";
+        btn.addEventListener("click", () => taskManager.deleteTask(taskId))
         return btn;
 
     }
@@ -120,6 +99,16 @@ class UI{
         div.appendChild(btn);
         const taskList = document.getElementById("taskList");
         taskList.appendChild(div);
+    }
+
+    checkboxAction(input, label){
+            input.addEventListener("click", () => {
+            if(input.checked){
+                label.classList.add("line-through", "text-gray-400");
+            }else{
+                label.classList.remove("line-through", "text-gray-400");
+            }
+        });
     }
 }
 
