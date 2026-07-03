@@ -646,7 +646,6 @@ h2 {
   width: 5rem;
   align-items: center;
   justify-content: center;
-  justify-self: end;
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(185 28 28 / var(--tw-bg-opacity, 1));
