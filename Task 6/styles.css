@@ -17,18 +17,18 @@
         @apply flex justify-center items-center bg-blue-400 rounded-full w-20 h-5 text-white font-semibold
     }
     .taskbox {
-        @apply grid grid-cols-12 items-center hover:bg-slate-50 bg-transparent ring-2 ring-cyan-800
+        @apply flex justify-between items-center hover:bg-slate-50 bg-transparent ring-2 ring-cyan-800
     }
     .taskbox .btn-delete {
-        @apply flex justify-center items-center bg-red-700 font-semibold rounded-full w-20 h-5 text-white md:col-span-2
+        @apply flex justify-center items-center bg-red-700 font-semibold rounded-full w-20 h-5 text-white p-2
     }
 
     .taskbox .check {
-        @apply border border-gray-600 col-span-2 justify-self-start m-2
+        @apply border border-gray-600  justify-self-start m-2
     }
 
     .taskbox .label {
-        @apply break-words md:col-span-8 col-span-6 m-1
+        @apply break-words m-1
     }
 
     .textbox {
