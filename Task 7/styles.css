@@ -4,7 +4,7 @@
 
 @layer base {
     h1 {
-        @apply text-xl text-cyan-800 font-bold underline decoration-double mx-auto mt-5;
+        @apply text-xl text-cyan-800 font-bold underline decoration-double underline-offset-4 mx-auto mt-5;
     }
 
     h2 {

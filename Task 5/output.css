@@ -565,6 +565,7 @@ h1 {
   color: rgb(21 94 117 / var(--tw-text-opacity, 1));
   text-decoration-line: underline;
   text-decoration-style: double;
+  text-underline-offset: 4px;
 }
 
 h2 {
@@ -741,14 +742,6 @@ h2 {
 .border-cyan-800 {
   --tw-border-opacity: 1;
   border-color: rgb(21 94 117 / var(--tw-border-opacity, 1));
-}
-
-.p-1 {
-  padding: 0.25rem;
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .p-2 {
