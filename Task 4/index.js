@@ -1,25 +1,25 @@
-let course1 =  {
+const course1 =  {
     id: 1,
     name: 'programmingFundamentals'
 }
-let course2 =  {
+const course2 =  {
     id: 2,
     name: 'webDevelopment'
 }
-let course3 =  {
+const course3 =  {
     id: 3,
     name: 'mathematics'
 }
-let course4 =  {
+const course4 =  {
     id: 4,
     name: 'algorithms'
 }
-let course5 =  {
+const course5 =  {
     id: 5,
     name: 'databaseSystems'
 }
 
-let student = {
+const student = {
     firstName: 'Sude',
     lastName: 'Koçman',
     age: 25,
