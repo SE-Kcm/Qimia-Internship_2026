@@ -18,6 +18,7 @@ export default class TaskManager{
         this.nextId++;
         return task;
     }
+
     addNewTask(taskName : string) : void{
         if(taskName.length == 0){
             alert("Please enter a task name!");

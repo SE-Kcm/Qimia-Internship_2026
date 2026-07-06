@@ -7,8 +7,8 @@ addButton.addEventListener("click", () => {
     inputValue.value = "";
 });
 
+
 function addNewTask(taskName){
-    //const taskName = document.getElementById("taskName"); 
     if(taskName.value.length == 0){
         alert("Please enter a task name!");
         return;
@@ -17,8 +17,6 @@ function addNewTask(taskName){
         name: taskName.value,
         id: nextId
     }
-
-    nextId++;
     const div = document.createElement("div");
     div.classList.add("taskbox");
     div.id = task.id;
@@ -51,6 +49,7 @@ function addNewTask(taskName){
 
     const taskList = document.getElementById("taskList");
     taskList.appendChild(div);
+    nextId++;
 }
 
 function deleteTask(id){
