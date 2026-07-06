@@ -1,17 +1,17 @@
-export default class Task{
-     name: string;
-     id: number;
-    
-    constructor(name: string,id:number){
+export default class Task {
+    name: string;
+    id: number;
+
+    constructor(name: string, id: number) {
         this.name = name;
-        this.id = id
+        this.id = id;
     }
 
-    getName(): string{
+    getName(): string {
         return this.name;
     }
 
-    getId () : number{
+    getId(): number {
         return this.id;
     }
 }

@@ -7,32 +7,34 @@ addButton.addEventListener("click", () => {
     inputValue.value = "";
 });
 
-
-function addNewTask(taskName){
-    if(taskName.value.length == 0){
+function addNewTask(taskName) {
+    if (taskName.value.trim().length == 0) {
         alert("Please enter a task name!");
         return;
     }
-    let task ={
+    let task = {
         name: taskName.value,
-        id: nextId
-    }
+        id: nextId,
+    };
+
     const div = document.createElement("div");
     div.classList.add("taskbox");
     div.id = task.id;
 
     const input = document.createElement("input");
     input.type = "checkbox";
+    input.id = "task" + task.id;
     input.classList.add("check");
 
     const label = document.createElement("label");
     label.classList.add("label");
+    label.htmlFor = "task" + task.id;
     label.textContent = task.name;
 
     input.addEventListener("click", () => {
-        if(input.checked){
+        if (input.checked) {
             label.classList.add("line-through", "text-gray-400");
-        }else{
+        } else {
             label.classList.remove("line-through", "text-gray-400");
         }
     });
@@ -52,9 +54,7 @@ function addNewTask(taskName){
     nextId++;
 }
 
-function deleteTask(id){
+function deleteTask(id) {
     const element = document.getElementById(id);
     element.remove();
-
-    
 }

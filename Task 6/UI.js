@@ -19,15 +19,17 @@ export default class UI{
         });
     }
 
-    createInput(){
+    createInput(taskID){
         const input = document.createElement("input");
         input.type = "checkbox";
         input.classList.add("check");
+        input.id = "task"+taskID;
         return input;
     }
-    createLabel(taskName){
+    createLabel(taskName, taskID){
         const label = document.createElement("label");
         label.classList.add("label");
+        label.htmlFor = "task"+taskID;
         label.textContent = taskName;
         return label;
     }

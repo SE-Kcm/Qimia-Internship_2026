@@ -16,16 +16,18 @@ export default class UI {
             inputValue.value = "";
         });
     }
-    createInput() {
+    createInput(taskId) {
         const input = document.createElement("input");
         input.type = "checkbox";
         input.classList.add("check");
+        input.id = "task" + taskId;
         return input;
     }
-    createLabel(taskName) {
+    createLabel(taskName, taskId) {
         const label = document.createElement("label");
         label.classList.add("label");
         label.textContent = taskName;
+        label.htmlFor = "task" + taskId;
         return label;
     }
     createDeleteButton(taskManager, taskId) {

@@ -16,18 +16,18 @@ export default class TaskManager{
         return task;
     }
     addNewTask(taskName){
-        if(taskName.length == 0){
+        if(taskName.trim().length == 0){
             alert("Please enter a task name!");
             return;
         }
         const task = this.createTask(taskName);
         this.tasks.push(task);
+        const taskID = task.getId();
+        const div = this.ui.createDiv(taskID);
 
-        const div = this.ui.createDiv(task.getId());
+        const input = this.ui.createInput(taskID);
 
-        const input = this.ui.createInput();
-
-        const label = this.ui.createLabel(task.getName());
+        const label = this.ui.createLabel(task.getName(), taskID);
 
         this.ui.checkboxAction(input, label);
 

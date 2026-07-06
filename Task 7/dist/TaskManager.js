@@ -16,7 +16,7 @@ export default class TaskManager {
         return task;
     }
     addNewTask(taskName) {
-        if (taskName.length == 0) {
+        if (taskName.trim().length == 0) {
             alert("Please enter a task name!");
             return;
         }
@@ -24,8 +24,8 @@ export default class TaskManager {
         const taskId = task.getId().toString();
         this.tasks.push(task);
         const div = this.ui.createDiv(taskId);
-        const input = this.ui.createInput();
-        const label = this.ui.createLabel(task.getName());
+        const input = this.ui.createInput(taskId);
+        const label = this.ui.createLabel(task.getName(), taskId);
         this.ui.checkboxAction(input, label);
         const btn = this.ui.createDeleteButton(this, taskId);
         this.ui.createTaskBox(input, label, btn, div);

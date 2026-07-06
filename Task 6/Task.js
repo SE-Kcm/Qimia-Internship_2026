@@ -1,14 +1,14 @@
-export default class Task{
-    constructor(name,id){
+export default class Task {
+    constructor(name, id) {
         this._name = name;
-        this._id = id
+        this._id = id;
     }
 
-    getName (){
+    getName() {
         return this._name;
     }
 
-    getId () {
+    getId() {
         return this._id;
     }
 }

@@ -3,8 +3,8 @@ export default class UI {
     constructor();
     createDiv(taskId: string): HTMLDivElement;
     createAddButton(taskManager: TaskManager): void;
-    createInput(): HTMLInputElement;
-    createLabel(taskName: string): HTMLLabelElement;
+    createInput(taskId: string): HTMLInputElement;
+    createLabel(taskName: string, taskId: string): HTMLLabelElement;
     createDeleteButton(taskManager: TaskManager, taskId: string): HTMLButtonElement;
     createTaskBox(input: HTMLInputElement, label: HTMLLabelElement, btn: HTMLButtonElement, div: HTMLDivElement): void;
     checkboxAction(input: HTMLInputElement, label: HTMLLabelElement): void;
