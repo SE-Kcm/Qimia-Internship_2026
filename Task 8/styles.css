@@ -4,7 +4,7 @@
 
 @layer base {
     h1 {
-        @apply text-xl text-cyan-800 font-bold bg-slate-300 mx-auto mt-5;
+        @apply text-xl text-black font-bold mx-auto mt-5;
     }
     h2 {
         @apply text-lg font-bold;
@@ -24,7 +24,7 @@
 
 @layer components {
     .productBox {
-        @apply flex justify-between bg-gray-300 gap-3 m-1 relative;
+        @apply grid grid-cols-4 bg-gray-300 gap-3 m-1 relative w-full;
     }
     .img {
         @apply object-contain;
