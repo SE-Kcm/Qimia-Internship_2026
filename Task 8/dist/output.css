@@ -565,6 +565,40 @@ h1 {
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .header {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -596,6 +630,40 @@ h1 {
   }
 }
 
+.title {
+  font-weight: 700;
+}
+
+.price {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.total {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 .btn {
   display: flex;
   height: 1.75rem;
@@ -614,6 +682,7 @@ h1 {
 .quantityBox {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
 }
 
@@ -626,6 +695,18 @@ h1 {
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+
+input {
+  height: 1.75rem;
+  width: 1.75rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
 }
 
 .btn-close {
@@ -642,20 +723,12 @@ h1 {
   position: relative;
 }
 
-.left-10 {
-  left: 2.5rem;
-}
-
 .right-1 {
   right: 0.25rem;
 }
 
 .top-1 {
   top: 0.25rem;
-}
-
-.top-5 {
-  top: 1.25rem;
 }
 
 .col-span-2 {
@@ -675,8 +748,17 @@ h1 {
   margin-right: 0.5rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
 }
 
 .mt-3 {
@@ -685,22 +767,6 @@ h1 {
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
 }
 
 .flex {
@@ -723,13 +789,29 @@ h1 {
   height: 5rem;
 }
 
+.h-7 {
+  height: 1.75rem;
+}
+
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .w-20 {
   width: 5rem;
+}
+
+.w-7 {
+  width: 1.75rem;
+}
+
+.w-72 {
+  width: 18rem;
 }
 
 .w-full {
@@ -764,12 +846,12 @@ h1 {
   gap: 0.25rem;
 }
 
-.gap-5 {
-  gap: 1.25rem;
+.gap-2 {
+  gap: 0.5rem;
 }
 
-.gap-10 {
-  gap: 2.5rem;
+.gap-5 {
+  gap: 1.25rem;
 }
 
 .divide-y > :not([hidden]) ~ :not([hidden]) {
@@ -793,19 +875,14 @@ h1 {
   background-color: rgb(30 64 175 / var(--tw-bg-opacity, 1));
 }
 
-.bg-gray-200 {
+.bg-gray-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
 
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
 
 .p-2 {
@@ -816,14 +893,12 @@ h1 {
   padding: 1rem;
 }
 
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
+.text-center {
+  text-align: center;
 }
 
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.text-right {
+  text-align: right;
 }
 
 .text-sm {
@@ -857,12 +932,12 @@ h1 {
     left: 50%;
   }
 
-  .md\:inline {
-    display: inline;
-  }
-
   .md\:flex {
     display: flex;
+  }
+
+  .md\:justify-between {
+    justify-content: space-between;
   }
 }
 
@@ -875,6 +950,10 @@ h1 {
     grid-column: span 2 / span 2;
   }
 
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
   .lg\:grid {
     display: grid;
   }
@@ -883,11 +962,23 @@ h1 {
     display: contents;
   }
 
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:max-h-\[400px\] {
+    max-height: 400px;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:overflow-y-scroll {
+    overflow-y: scroll;
   }
 }

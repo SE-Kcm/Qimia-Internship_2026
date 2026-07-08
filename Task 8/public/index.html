@@ -7,30 +7,36 @@
         <link rel="stylesheet" href="../dist/output.css" />
     </head>
     <body class="bg-gray-100">
-        <div class="flex w-screen h-20 bg-white">
-            <a class="hidden md:flex mx-2 justify-center items-center" href="url"> &lt; <span class="underline underline-offset-1 font-bold text-sm ml-1">ALIŞVERİŞE DEVAM ET</span></a>
-            <img class="w-20 h-20 absolute md:left-2/4" src="./images/Logo.png" />
-        </div>
-        <div class="grid lg:grid-cols-3 grid-cols-1 mx-2 gap-5">
+        <header class="h-20 bg-white w-screen">
+            <div class="container mx-auto flex h-full">
+                <a class="hidden md:flex mx-2 justify-center items-center" href="url"> &lt; <span class="underline underline-offset-1 font-bold text-sm ml-1">ALIŞVERİŞE DEVAM ET</span></a>
+                <img class="w-20 h-20 absolute md:left-2/4" src="./images/Logo.png" />
+            </div>
+        </header>
+        <main class="container mx-auto grid lg:grid-cols-3 grid-cols-1 gap-5 p-4">
             <div class="cart lg:col-span-2">
                 <h1>Sepetim</h1>
+                <!-- <div class="emptyCart flex bg-white justify-center items-center mt-4">
+                    <img class="w-72" src="images/emptyCartIcon.png" />
+                </div> -->
                 <div class="columnNames hidden lg:grid lg:grid-cols-5 mt-4 mb-2">
                     <p class="header col-span-2">ÜRÜN</p>
-                    <p class="header">BİRİM FİYAT</p>
-                    <p class="header">ADET</p>
-                    <p class="header">TOPLAM FIYAT</p>
+                    <p class="header text-center">BİRİM FİYAT</p>
+                    <p class="header text-center">ADET</p>
+                    <p class="header text-center">TOPLAM FIYAT</p>
                 </div>
-                <div id="productList" class="productList divide-y divide-gray-200">
-                    <!-- <div class="productBox grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative">
+                <div id="productList" class="productList divide-y divide-gray-200 lg:max-h-[400px] lg:overflow-y-scroll mt-4 lg:mt-0">
+                    <div class="productBox grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative">
                         <div class="imageBox w-20 m-2">
                             <img src="images/yetiskin-badminton-raket-seti-turkuazturuncu-br100-ad.avif" />
                         </div>
                         <div class="productDetails lg:contents">
                             <p>TITLE</p>
-                            <p>TITLE</p>
+                            <p><span class="lg:hidden">Birim Fiyat: </span>14.99$</p>
                             <div class="countBox flex gap-1 items-center">
                                 <button class="btn">-</button>
-                                <p class="count">5</p>
+                                <!-- <p class="count">5</p> -->
+                                <input class="w-7 h-7" type="text" value="5" />
                                 <button class="btn">+</button>
                             </div>
                             <p>TITLE</p>
@@ -38,30 +44,30 @@
                         <button class="absolute top-1 right-1">
                             <img src="images/delete-icon.png" />
                         </button>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div id="summary" class="summary lg:col-span-1 h-fit">
                 <h1>Sipariş özeti</h1>
-                <div class="summaryBox bg-white mt-3 p-2 divide-y divide-gray-500">
+                <div class="summaryBox bg-white mt-3 p-2 divide-y divide-gray-500 gap-2">
                     <div class="subtotal flex justify-between items-center p-4">
-                        <p>Ara toplam <span id="item-count">(0 adet)</span></p>
-                        <p id="subtotalPrice">0.00$</p>
+                        <p class="text-sm">Ara toplam <span id="item-count">(0 adet)</span></p>
+                        <p id="subtotalPrice" class="text-sm">0.00$</p>
                     </div>
-                    <div class="shippment flex justify-between items-center p-4">
-                        <p>Kargo</p>
-                        <p>Bir sonraki adımda hesaplanacak</p>
+                    <div class="shippment flex md:justify-between items-center p-4 gap-1">
+                        <p class="text-sm">Kargo</p>
+                        <p class="text-sm text-right">Bir sonraki adımda hesaplanacak</p>
                     </div>
                     <div class="total flex justify-between items-center p-4">
-                        <p class="text-lg font-bold">Toplam <span class="text-base font-normal">(KDV dahil)</span></p>
-                        <p id="totalCart">0.00$</p>
+                        <p class="text-sm font-bold">Toplam <span class="font-normal">(KDV dahil)</span></p>
+                        <p id="totalCart" class="text-sm">0.00$</p>
                     </div>
                     <div class="flex justify-center">
                         <button class="justify-center items-center bg-blue-800 font-bold text-white m-4 h-10 w-full">Sepeti onayla</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <script type="module" src="../dist/index.js"></script>
     </body>
 </html>

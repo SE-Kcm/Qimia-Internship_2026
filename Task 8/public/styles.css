@@ -25,14 +25,30 @@
         @apply lg:contents;
     }
 
+    .title {
+        @apply font-bold;
+    }
+
+    .price {
+        @apply md:flex md:text-base md:justify-center md:items-center text-sm;
+    }
+
+    .total {
+        @apply md:flex md:text-base md:justify-center md:items-center text-sm;
+    }
+
     .btn {
         @apply flex justify-center items-center w-7 h-7 border-2 border-gray-300 text-sm font-semibold p-1;
     }
     .quantityBox {
-        @apply flex gap-1 items-center;
+        @apply flex gap-1 justify-center items-center;
     }
     .quantity {
         @apply flex border-2 border-gray-300 w-7 h-7 items-center justify-center;
+    }
+
+    input {
+        @apply text-center w-7 h-7 border-2 border-gray-300 text-sm font-semibold;
     }
 
     .btn-close {

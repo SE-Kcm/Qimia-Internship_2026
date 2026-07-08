@@ -14,11 +14,30 @@ export default class UI {
         return p;
     }
 
+    createSpan(content: string, className: string, id: number): HTMLSpanElement {
+        const span = document.createElement("span");
+        span.textContent = content;
+        span.classList.add(className);
+        span.id = className + id;
+        return span;
+    }
+
     createImage(srcUrl: string): HTMLImageElement {
         const img = document.createElement("img");
         img.src = srcUrl;
         return img;
     }
+
+    // createInput(content: string, className: string, id: number): HTMLInputElement {
+    //     const input = document.createElement("input");
+    //     input.value = content;
+    //     input.classList.add(className);
+    //     input.id = className + id;
+    //     input.addEventListener("click", (event) => {
+    //         this.updateQuantity(id, Number((event.target as HTMLInputElement).value));
+    //     });
+    //     return input;
+    // }
 
     createButton(content: string, className: string, id: string, buttonHandler: () => void): HTMLButtonElement {
         const btn = document.createElement("button");
@@ -32,18 +51,12 @@ export default class UI {
 
     updateQuantity(id: number, newContent: number) {
         const element = document.getElementById("quantity" + id);
-        //const h5 = element?.querySelector("h5");
-        //h5!.textContent = newContent.toString();
         if (element) {
             element.textContent = newContent.toString();
         }
-        console.log("update:", id);
     }
 
     updateTotal(id: number, newContent: string) {
-        // const element = document.getElementById("productBox" + id);
-        // const h3 = element?.querySelector("h3");
-        // h3!.textContent = "Total: " + newContent + "$";
         const element = document.getElementById("total" + id);
         if (element) {
             element.textContent = newContent + "$";

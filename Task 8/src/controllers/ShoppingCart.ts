@@ -1,5 +1,5 @@
 import type { Cart } from "../models/Cart.js";
-import UI from "../UI.js";
+import UI from "./UI.js";
 import ShoppingCartService from "../services/ShoppingCartService.js";
 import { initialCart } from "../constants/InitialCart.js";
 import { deleteIconSrc } from "../constants/deleteIcon.js";
@@ -41,15 +41,20 @@ export default class ShoppingCart {
 
             const productDetails = this.ui.createDiv("productDetails", id);
             const title = this.ui.createP(product.title, "title", id);
-            const price = this.ui.createP(product.price.toFixed(2), "price", id);
+            const price = this.ui.createP(product.price.toFixed(2) + "$", "price", id);
+            const spanPrice = this.ui.createSpan("BIRIM FIYAT: ", "lg:hidden", id);
+            price.prepend(spanPrice);
             const quantityBox = this.ui.createDiv("quantityBox", id);
             const btnDecrease = this.ui.createButton("-", "btn", "dec" + id, () => this.decreaseQuantity(id));
             const quantity = this.ui.createP(product.quantity.toString(), "quantity", id);
+            // const quantity = this.ui.createInput(product.quantity.toString(), "quantity", id);
             const btnIncrease = this.ui.createButton("+", "btn", "inc" + id, () => this.increaseQuantity(id));
             quantityBox.appendChild(btnDecrease);
             quantityBox.appendChild(quantity);
             quantityBox.appendChild(btnIncrease);
-            const total = this.ui.createP(product.total.toFixed(2), "total", id);
+            const total = this.ui.createP(product.total.toFixed(2) + "$", "total", id);
+            const spanTotal = this.ui.createSpan("TOPLAM FIYAT: ", "lg:hidden", id);
+            total.prepend(spanTotal);
 
             productDetails.appendChild(title);
             productDetails.appendChild(price);
@@ -58,10 +63,10 @@ export default class ShoppingCart {
             console.log(deleteIconSrc);
             const deleteIcon = this.ui.createImage(deleteIconSrc);
             const btnClose = this.ui.createButton("", "btn-close", "clo" + id, () => {
-                (this.deleteProducts(btnClose, id),
-                    btnDecrease.removeEventListener("click", () => this.decreaseQuantity(id)),
-                    btnIncrease.removeEventListener("click", () => this.increaseQuantity(id)),
-                    btnClose.removeEventListener("click", () => this.deleteProducts(btnClose, id)));
+                this.deleteProducts(btnClose, id);
+                btnDecrease.removeEventListener("click", () => this.decreaseQuantity(id));
+                btnIncrease.removeEventListener("click", () => this.increaseQuantity(id));
+                btnClose.removeEventListener("click", () => this.deleteProducts(btnClose, id));
             });
 
             btnClose.appendChild(deleteIcon);

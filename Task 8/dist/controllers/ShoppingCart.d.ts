@@ -1,5 +1,5 @@
 import type { Cart } from "../models/Cart.js";
-import UI from "../UI.js";
+import UI from "./UI.js";
 import ShoppingCartService from "../services/ShoppingCartService.js";
 export default class ShoppingCart {
     url: string;
