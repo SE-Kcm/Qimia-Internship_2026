@@ -1,3 +1,3 @@
-import ShoppingCart from "./ShoppingCart.js";
+import ShoppingCart from "./controllers/ShoppingCart.js";
 
 const cart = new ShoppingCart("https://dummyjson.com/carts/3");

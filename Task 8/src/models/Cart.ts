@@ -1,4 +1,4 @@
-import type { Product } from "./Product.js";
+import type { Product } from "@/models/Product.js";
 
 export type Cart = {
     id: number;

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply text-xl text-black font-bold mx-auto mt-5;
+    }
+}
+
+@layer components {
+    .header {
+        @apply text-xs;
+    }
+
+    .productBox {
+        @apply grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative;
+    }
+
+    .imageBox {
+        @apply w-20 m-2;
+    }
+
+    .productDetails {
+        @apply lg:contents;
+    }
+
+    .btn {
+        @apply flex justify-center items-center w-7 h-7 border-2 border-gray-300 text-sm font-semibold p-1;
+    }
+    .quantityBox {
+        @apply flex gap-1 items-center;
+    }
+    .quantity {
+        @apply flex border-2 border-gray-300 w-7 h-7 items-center justify-center;
+    }
+
+    .btn-close {
+        @apply absolute top-1 right-1;
+    }
+}

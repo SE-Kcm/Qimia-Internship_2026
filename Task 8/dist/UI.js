@@ -5,27 +5,14 @@ export default class UI {
         div.id = divName + id;
         return div;
     }
-    createH2(text) {
-        const h2 = document.createElement("h2");
-        h2.textContent = text;
-        return h2;
+    createP(content, className, id) {
+        const p = document.createElement("p");
+        p.textContent = content;
+        p.classList.add(className);
+        p.id = className + id;
+        return p;
     }
-    createH3(text) {
-        const h3 = document.createElement("h3");
-        h3.textContent = "Total: " + text + "$";
-        return h3;
-    }
-    createH4(text) {
-        const h4 = document.createElement("h4");
-        h4.textContent = text + "$";
-        return h4;
-    }
-    createH5(text) {
-        const h5 = document.createElement("h5");
-        h5.textContent = text;
-        return h5;
-    }
-    createProductImage(srcUrl) {
+    createImage(srcUrl) {
         const img = document.createElement("img");
         img.src = srcUrl;
         return img;
@@ -38,24 +25,44 @@ export default class UI {
         btn.addEventListener("click", buttonHandler);
         return btn;
     }
-    destroyButton(btn, buttonHandler) {
-        btn.removeEventListener("click", buttonHandler);
-    }
     updateQuantity(id, newContent) {
         const element = document.getElementById("quantity" + id);
-        const h5 = element?.querySelector("h5");
-        h5.textContent = newContent.toString();
+        //const h5 = element?.querySelector("h5");
+        //h5!.textContent = newContent.toString();
+        if (element) {
+            element.textContent = newContent.toString();
+        }
         console.log("update:", id);
     }
     updateTotal(id, newContent) {
-        const element = document.getElementById("productBox" + id);
-        const h3 = element?.querySelector("h3");
-        h3.textContent = "Total: " + newContent + "$";
+        // const element = document.getElementById("productBox" + id);
+        // const h3 = element?.querySelector("h3");
+        // h3!.textContent = "Total: " + newContent + "$";
+        const element = document.getElementById("total" + id);
+        if (element) {
+            element.textContent = newContent + "$";
+        }
+    }
+    updateCartSubTotal(newTotal) {
+        const element = document.getElementById("subtotalPrice");
+        if (element) {
+            element.textContent = newTotal.toFixed(2) + "$";
+        }
     }
     updateCartTotal(newTotal) {
-        const element = document.getElementById("checkout");
-        element?.querySelector("h2");
-        element.textContent = "TOTAL: " + newTotal.toFixed(2) + "$";
+        // const element = document.getElementById("checkout");
+        // element?.querySelector("h2");
+        // element!.textContent = "TOTAL: " + newTotal.toFixed(2) + "$";
+        const element = document.getElementById("totalCart");
+        if (element) {
+            element.textContent = newTotal.toFixed(2) + "$";
+        }
+    }
+    updateCartQuantity(quantity) {
+        const element = document.getElementById("item-count");
+        if (element) {
+            element.textContent = "(" + quantity.toString() + " adet)";
+        }
     }
     deleteProductBox(id) {
         document.getElementById("productBox" + id)?.remove();
