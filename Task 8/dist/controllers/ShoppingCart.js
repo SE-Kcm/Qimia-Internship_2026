@@ -40,8 +40,8 @@ export default class ShoppingCart {
             price.prepend(spanPrice);
             const quantityBox = this.ui.createDiv("quantityBox", id);
             const btnDecrease = this.ui.createButton("-", "btn", "dec" + id, () => this.decreaseQuantity(id));
-            //const quantity = this.ui.createP(product.quantity.toString(), "quantity", id);
-            const quantity = this.ui.createInput(product.quantity.toString(), "quantity", id);
+            const quantity = this.ui.createP(product.quantity.toString(), "quantity", id);
+            // const quantity = this.ui.createInput(product.quantity.toString(), "quantity", id);
             const btnIncrease = this.ui.createButton("+", "btn", "inc" + id, () => this.increaseQuantity(id));
             quantityBox.appendChild(btnDecrease);
             quantityBox.appendChild(quantity);

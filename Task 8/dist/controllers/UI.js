@@ -24,16 +24,16 @@ export default class UI {
         img.src = srcUrl;
         return img;
     }
-    createInput(content, className, id) {
-        const input = document.createElement("input");
-        input.value = content;
-        input.classList.add(className);
-        input.id = className + id;
-        input.addEventListener("click", (event) => {
-            this.updateQuantity(id, Number(event.target.value));
-        });
-        return input;
-    }
+    // createInput(content: string, className: string, id: number): HTMLInputElement {
+    //     const input = document.createElement("input");
+    //     input.value = content;
+    //     input.classList.add(className);
+    //     input.id = className + id;
+    //     input.addEventListener("click", (event) => {
+    //         this.updateQuantity(id, Number((event.target as HTMLInputElement).value));
+    //     });
+    //     return input;
+    // }
     createButton(content, className, id, buttonHandler) {
         const btn = document.createElement("button");
         btn.classList.add(className);
