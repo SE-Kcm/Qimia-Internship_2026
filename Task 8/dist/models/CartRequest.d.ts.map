@@ -1,0 +1,1 @@
+{"version":3,"file":"CartRequest.d.ts","sourceRoot":"","sources":["../../src/models/CartRequest.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAEzC,MAAM,MAAM,WAAW,GAAG;IACtB,EAAE,EAAE,MAAM,CAAC;IACX,QAAQ,EAAE,OAAO,EAAE,CAAC;IACpB,KAAK,EAAE,MAAM,CAAC;IACd,aAAa,EAAE,MAAM,CAAC;IACtB,aAAa,EAAE,MAAM,CAAC;CACzB,CAAC"}

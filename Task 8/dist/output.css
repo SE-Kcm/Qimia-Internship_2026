@@ -743,6 +743,10 @@ input {
   margin: 1rem;
 }
 
+.m-40 {
+  margin: 10rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -789,10 +793,6 @@ input {
   height: 5rem;
 }
 
-.h-7 {
-  height: 1.75rem;
-}
-
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
@@ -804,10 +804,6 @@ input {
 
 .w-20 {
   width: 5rem;
-}
-
-.w-7 {
-  width: 1.75rem;
 }
 
 .w-72 {
@@ -893,6 +889,18 @@ input {
   padding: 1rem;
 }
 
+.p-10 {
+  padding: 2.5rem;
+}
+
+.p-40 {
+  padding: 10rem;
+}
+
+.p-56 {
+  padding: 14rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -925,6 +933,10 @@ input {
 
 .underline-offset-1 {
   text-underline-offset: 1px;
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 @media (min-width: 768px) {
@@ -970,6 +982,10 @@ input {
     max-height: 400px;
   }
 
+  .lg\:max-h-\[500px\] {
+    max-height: 500px;
+  }
+
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -978,7 +994,15 @@ input {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
+  .lg\:overflow-y-auto {
+    overflow-y: auto;
+  }
+
   .lg\:overflow-y-scroll {
     overflow-y: scroll;
+  }
+
+  .lg\:scroll-auto {
+    scroll-behavior: auto;
   }
 }

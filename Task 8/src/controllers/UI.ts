@@ -28,16 +28,18 @@ export default class UI {
         return img;
     }
 
-    // createInput(content: string, className: string, id: number): HTMLInputElement {
-    //     const input = document.createElement("input");
-    //     input.value = content;
-    //     input.classList.add(className);
-    //     input.id = className + id;
-    //     input.addEventListener("click", (event) => {
-    //         this.updateQuantity(id, Number((event.target as HTMLInputElement).value));
-    //     });
-    //     return input;
-    // }
+    createInput(content: string, className: string, id: number, inputHandler: (val: number) => void): HTMLInputElement {
+        const input = document.createElement("input");
+        input.value = content;
+        input.classList.add(className);
+        input.id = className + id;
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                inputHandler(Number(input.value));
+            }
+        });
+        return input;
+    }
 
     createButton(content: string, className: string, id: string, buttonHandler: () => void): HTMLButtonElement {
         const btn = document.createElement("button");
@@ -49,27 +51,31 @@ export default class UI {
         return btn;
     }
 
-    updateQuantity(id: number, newContent: number) {
+    updateAll(id: number, value: number): void {
+        this.updateQuantity(id, value);
+    }
+
+    updateQuantity(id: number, newContent: number): void {
         const element = document.getElementById("quantity" + id);
-        if (element) {
-            element.textContent = newContent.toString();
+        if (element instanceof HTMLInputElement) {
+            element.value = newContent.toString();
         }
     }
 
-    updateTotal(id: number, newContent: string) {
+    updateTotal(id: number, newContent: string): void {
         const element = document.getElementById("total" + id);
         if (element) {
             element.textContent = newContent + "$";
         }
     }
-    updateCartSubTotal(newTotal: number) {
+    updateCartSubTotal(newTotal: number): void {
         const element = document.getElementById("subtotalPrice");
         if (element) {
             element.textContent = newTotal.toFixed(2) + "$";
         }
     }
 
-    updateCartTotal(newTotal: number) {
+    updateCartTotal(newTotal: number): void {
         // const element = document.getElementById("checkout");
         // element?.querySelector("h2");
         // element!.textContent = "TOTAL: " + newTotal.toFixed(2) + "$";
@@ -79,14 +85,37 @@ export default class UI {
         }
     }
 
-    updateCartQuantity(quantity: number) {
+    updateCartQuantity(quantity: number): void {
         const element = document.getElementById("item-count");
         if (element) {
             element.textContent = "(" + quantity.toString() + " adet)";
         }
     }
 
-    deleteProductBox(id: number) {
+    deleteProductBox(id: number): void {
         document.getElementById("productBox" + id)?.remove();
+    }
+
+    toggle(toggle: boolean) {
+        if (toggle) {
+            console.log("in toggle");
+            const emptyBox = document.getElementById("emptyCart");
+            if (emptyBox) {
+                emptyBox.classList.remove("hidden");
+                const header = document.getElementById("columnNames");
+                if (header) {
+                    header.classList.add("lg:hidden");
+                }
+            }
+        } else {
+            const emptyBox = document.getElementById("emptyCart");
+            if (emptyBox) {
+                emptyBox.classList.add("hidden");
+                const header = document.getElementById("columnNames");
+                if (header) {
+                    header.classList.remove("lg:hidden");
+                }
+            }
+        }
     }
 }

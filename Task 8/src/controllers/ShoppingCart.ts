@@ -3,6 +3,7 @@ import UI from "./UI.js";
 import ShoppingCartService from "../services/ShoppingCartService.js";
 import { initialCart } from "../constants/InitialCart.js";
 import { deleteIconSrc } from "../constants/deleteIcon.js";
+
 export default class ShoppingCart {
     url: string;
     cart: Cart;
@@ -18,7 +19,6 @@ export default class ShoppingCart {
 
     async init() {
         const data = await this.service.fetchCart();
-        //console.log(data);
         if (data) {
             this.cart = data;
             this.listProducts();
@@ -46,8 +46,8 @@ export default class ShoppingCart {
             price.prepend(spanPrice);
             const quantityBox = this.ui.createDiv("quantityBox", id);
             const btnDecrease = this.ui.createButton("-", "btn", "dec" + id, () => this.decreaseQuantity(id));
-            const quantity = this.ui.createP(product.quantity.toString(), "quantity", id);
-            // const quantity = this.ui.createInput(product.quantity.toString(), "quantity", id);
+            //const quantity = this.ui.createP(product.quantity.toString(), "quantity", id);
+            const quantity = this.ui.createInput(product.quantity.toString(), "quantity", id, (value) => this.changeQuantity(id, value));
             const btnIncrease = this.ui.createButton("+", "btn", "inc" + id, () => this.increaseQuantity(id));
             quantityBox.appendChild(btnDecrease);
             quantityBox.appendChild(quantity);
@@ -60,17 +60,15 @@ export default class ShoppingCart {
             productDetails.appendChild(price);
             productDetails.appendChild(quantityBox);
             productDetails.appendChild(total);
-            console.log(deleteIconSrc);
             const deleteIcon = this.ui.createImage(deleteIconSrc);
             const btnClose = this.ui.createButton("", "btn-close", "clo" + id, () => {
-                this.deleteProducts(btnClose, id);
+                this.deleteProducts(id);
                 btnDecrease.removeEventListener("click", () => this.decreaseQuantity(id));
                 btnIncrease.removeEventListener("click", () => this.increaseQuantity(id));
-                btnClose.removeEventListener("click", () => this.deleteProducts(btnClose, id));
+                btnClose.removeEventListener("click", () => this.deleteProducts(id));
             });
 
             btnClose.appendChild(deleteIcon);
-            console.log(btnClose);
 
             productBox.appendChild(imgBox);
             productBox.appendChild(productDetails);
@@ -85,10 +83,15 @@ export default class ShoppingCart {
     async increaseQuantity(id: number) {
         let product = this.cart.products.find((product) => product.id === id);
         if (product) {
-            const updatedCart = await this.service.updateCart(id, product.quantity + 1, product.total + product.price, this.cart.total + product.price, this.cart.totalQuantity + 1);
+            const updatedCart = await this.service.updateCart(this.cart.total + product.price, this.cart.totalQuantity + 1, id, product.quantity + 1, product.total + product.price);
             if (updatedCart) {
-                this.cart = updatedCart;
-                product = this.cart.products.find((product) => product.id === id);
+                console.log("updateCart valid");
+                this.cart.total = this.cart.total + product.price;
+                this.cart.totalQuantity = this.cart.totalQuantity + 1;
+                product.total = product.total + product.price;
+                product.quantity = product.quantity + 1;
+                //this.cart = updatedCart;
+                //product = this.cart.products.find((product) => product.id === id);
                 if (product) {
                     this.ui.updateQuantity(id, product.quantity);
                     this.ui.updateTotal(id, product.total.toFixed(2));
@@ -110,10 +113,14 @@ export default class ShoppingCart {
             if (quantity != 0) {
                 quantity = product.quantity - 1;
                 const total = product.total - product.price;
-                const updatedCart = await this.service.updateCart(id, quantity, total, this.cart.total - product.price, this.cart.totalQuantity - 1);
+                const updatedCart = await this.service.updateCart(this.cart.total - product.price, this.cart.totalQuantity - 1, id, quantity, total);
                 if (updatedCart) {
-                    this.cart = updatedCart;
-                    product = this.cart.products.find((product) => product.id === id);
+                    //this.cart = updatedCart;
+                    this.cart.total = this.cart.total - product.price;
+                    this.cart.totalQuantity = this.cart.totalQuantity - 1;
+                    product.total = product.total - product.price;
+                    product.quantity = product.quantity - 1;
+                    //product = this.cart.products.find((product) => product.id === id);
                     if (product) {
                         this.ui.updateQuantity(id, product.quantity);
                         this.ui.updateTotal(id, product.total.toFixed(2));
@@ -124,21 +131,70 @@ export default class ShoppingCart {
                     }
                 }
             }
+        } else {
+            alert("There was no product found");
         }
     }
 
-    deleteProducts(btn: HTMLButtonElement, id: number) {
-        const length = this.cart.products.length;
-        if (length != 0) {
-            this.ui.deleteProductBox(id);
-            for (let i: number = 0; i < length; i++) {
-                const product = this.cart.products[i];
-                if (product && product.id == id) {
-                    this.cart.products.splice(i, 1);
+    async changeQuantity(id: number, newQuantity: number) {
+        let product = this.cart.products.find((product) => product.id === id);
+        if (product) {
+            if (product.quantity != newQuantity) {
+                const newTotal = newQuantity * product.price;
+                const newCartTotal = this.cart.total - product.total + newTotal;
+                const newCartQuantity = this.cart.totalQuantity - product.quantity + newQuantity;
+                const updatedCart = await this.service.updateCart(newCartTotal, newCartQuantity, id, newQuantity, newTotal);
+                if (updatedCart) {
+                    //this.cart = updatedCart;
+                    this.cart.total = newCartTotal;
+                    this.cart.totalQuantity = newQuantity;
+                    product.total = newTotal;
+                    product.quantity = newQuantity;
+                    //product = this.cart.products.find((product) => product.id === id);
+                    if (product) {
+                        this.ui.updateQuantity(id, product.quantity);
+                        this.ui.updateTotal(id, product.total.toFixed(2));
+                        this.ui.updateCartTotal(this.cart.total);
+                        this.ui.updateCartQuantity(this.cart.totalQuantity);
+                        this.calculateCartTotal();
+                        this.calculateCartSubTotal();
+                    }
                 }
             }
-            this.calculateCartTotal();
-            this.calculateCartSubTotal();
+        } else {
+            alert("There was no product found");
+        }
+    }
+
+    async deleteProducts(id: number) {
+        const len = this.cart.products.length;
+        if (len === 1) {
+            this.ui.toggle(true);
+        }
+        let product = this.cart.products.find((product) => product.id === id);
+        if (product) {
+            const newProducts = this.cart.products.filter((item) => item.id != id);
+            //console.log("newProducts:", newProducts);
+            const newCartTotal = this.cart.total - product.total;
+            //console.log("newCartTotal:", newCartTotal);
+            const newCartQuantity = this.cart.totalQuantity - product.quantity;
+            //console.log("newCartQuantity:", newCartQuantity);
+            const updatedCart = await this.service.updateCart(newCartTotal, newCartQuantity, undefined, undefined, undefined, newProducts);
+            if (updatedCart) {
+                this.cart.total = newCartTotal;
+                this.cart.totalQuantity = newCartQuantity;
+                this.cart.products = newProducts;
+                const len = this.cart.products.length;
+                if (len === 0) {
+                    this.ui.toggle(true);
+                }
+                //this.cart = updatedCart;
+                console.log("updatedCart: ", this.cart);
+                this.ui.deleteProductBox(id);
+                this.ui.updateCartQuantity(this.cart.totalQuantity);
+                this.calculateCartTotal();
+                this.calculateCartSubTotal();
+            }
         }
     }
 

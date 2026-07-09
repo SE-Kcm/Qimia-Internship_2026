@@ -24,16 +24,18 @@ export default class UI {
         img.src = srcUrl;
         return img;
     }
-    // createInput(content: string, className: string, id: number): HTMLInputElement {
-    //     const input = document.createElement("input");
-    //     input.value = content;
-    //     input.classList.add(className);
-    //     input.id = className + id;
-    //     input.addEventListener("click", (event) => {
-    //         this.updateQuantity(id, Number((event.target as HTMLInputElement).value));
-    //     });
-    //     return input;
-    // }
+    createInput(content, className, id, inputHandler) {
+        const input = document.createElement("input");
+        input.value = content;
+        input.classList.add(className);
+        input.id = className + id;
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                inputHandler(Number(input.value));
+            }
+        });
+        return input;
+    }
     createButton(content, className, id, buttonHandler) {
         const btn = document.createElement("button");
         btn.classList.add(className);
@@ -42,10 +44,13 @@ export default class UI {
         btn.addEventListener("click", buttonHandler);
         return btn;
     }
+    updateAll(id, value) {
+        this.updateQuantity(id, value);
+    }
     updateQuantity(id, newContent) {
         const element = document.getElementById("quantity" + id);
-        if (element) {
-            element.textContent = newContent.toString();
+        if (element instanceof HTMLInputElement) {
+            element.value = newContent.toString();
         }
     }
     updateTotal(id, newContent) {
@@ -77,6 +82,29 @@ export default class UI {
     }
     deleteProductBox(id) {
         document.getElementById("productBox" + id)?.remove();
+    }
+    toggle(toggle) {
+        if (toggle) {
+            console.log("in toggle");
+            const emptyBox = document.getElementById("emptyCart");
+            if (emptyBox) {
+                emptyBox.classList.remove("hidden");
+                const header = document.getElementById("columnNames");
+                if (header) {
+                    header.classList.add("lg:hidden");
+                }
+            }
+        }
+        else {
+            const emptyBox = document.getElementById("emptyCart");
+            if (emptyBox) {
+                emptyBox.classList.add("hidden");
+                const header = document.getElementById("columnNames");
+                if (header) {
+                    header.classList.remove("lg:hidden");
+                }
+            }
+        }
     }
 }
 //# sourceMappingURL=UI.js.map

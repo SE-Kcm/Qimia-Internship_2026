@@ -1,3 +1,4 @@
+import type { Product } from "../models/Product.js";
 import type { Cart } from "../models/Cart.js";
 
 export default class ShoppingCartService {
@@ -43,32 +44,61 @@ export default class ShoppingCartService {
         return cart;
     }
 
-    async updateCart(id: number, quantity: number, total: number, cartTotal: number, totalQuantity: number): Promise<Cart | undefined> {
+    async updateCart(cartTotal: number, totalQuantity: number, id?: number, quantity?: number, total?: number, product?: Product[]): Promise<Cart | undefined> {
         try {
-            const updatedCart = await fetch(this.url, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    merge: true,
-                    products: [
-                        {
-                            id: id,
-                            quantity: quantity,
-                            total: total,
-                        },
-                    ],
+            if (id != undefined && quantity != undefined && total != undefined) {
+                const updatedCart = await fetch(this.url, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        merge: true,
+                        products: [
+                            {
+                                id: id,
+                                quantity: quantity,
+                                total: total,
+                            },
+                        ],
+                        total: cartTotal,
+                        totalQuantity: totalQuantity,
+                    }),
+                });
+                if (!updatedCart.ok) {
+                    console.error("Server Error Status: ${cartResponse.status}");
+                    return;
+                }
+                const data = await updatedCart.json();
+                console.log("in Service 1", data.products);
+                return this.mapToCart(data);
+            } else if (product != undefined) {
+                console.log({
+                    merge: false,
+                    products: product,
                     total: cartTotal,
                     totalQuantity: totalQuantity,
-                }),
-            });
-            if (!updatedCart.ok) {
-                console.error("Server Error Status: ${cartResponse.status}");
-                return;
+                });
+                const updatedCart = await fetch(this.url, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        merge: false,
+                        products: product,
+                        total: cartTotal,
+                        totalQuantity: totalQuantity,
+                    }),
+                });
+                if (!updatedCart.ok) {
+                    console.error("Server Error Status: ${cartResponse.status}");
+                    return;
+                }
+                const data = await updatedCart.json();
+                console.log("in Service 2", data);
+                return this.mapToCart(data);
             }
-            const data = await updatedCart.json();
-            return this.mapToCart(data);
         } catch (networkError) {
             console.error("Network/Fetch Error:", networkError);
         }

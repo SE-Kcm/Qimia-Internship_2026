@@ -11,7 +11,8 @@ export default class ShoppingCart {
     listProducts(): void;
     increaseQuantity(id: number): Promise<void>;
     decreaseQuantity(id: number): Promise<void>;
-    deleteProducts(btn: HTMLButtonElement, id: number): void;
+    changeQuantity(id: number, newQuantity: number): Promise<void>;
+    deleteProducts(id: number): Promise<void>;
     calculateCartSubTotal(): void;
     calculateCartTotal(): void;
 }
