@@ -99,6 +99,8 @@ export default class UI {
             const emptyBox = document.getElementById("emptyCart");
             if (emptyBox) {
                 emptyBox.classList.remove("hidden");
+                emptyBox.classList.remove("opacity-0");
+                emptyBox.classList.add("opacity-100");
                 const header = document.getElementById("columnNames");
                 if (header) {
                     header.classList.add("lg:hidden");

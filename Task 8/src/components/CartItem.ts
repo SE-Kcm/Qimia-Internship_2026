@@ -67,7 +67,6 @@ export default class CartItem {
     createQuantityBox(id: number): HTMLElement {
         const quantityBox = this.ui.createDiv("quantityBox", id);
         const btnDecrease = this.ui.createButton("-", "btn", "dec" + id, this.decreaseHandler);
-        //unsure about this
         const quantity = this.ui.createInput(this.product.quantity.toString(), "quantity", id, this.changeQuantityHandler);
         const btnIncrease = this.ui.createButton("+", "btn", "inc" + id, this.increaseHandler);
 
