@@ -14,9 +14,9 @@
             </div>
         </header>
         <main class="container mx-auto grid lg:grid-cols-3 grid-cols-1 gap-5 p-4">
-            <div class="cart lg:col-span-2">
-                <h1>Sepetim</h1>
-                <div id="emptyCart" class="hidden bg-white p-56">
+            <section class="cart lg:col-span-2">
+                <h2>Sepetim</h2>
+                <div id="emptyCart" class="hidden bg-white p-5 flex justify-center items-center mt-4">
                     <img class="w-72" src="images/emptyCartIcon.png" />
                 </div>
                 <div id="columnNames" class="columnNames hidden lg:grid lg:grid-cols-5 mt-4 mb-2">
@@ -26,12 +26,15 @@
                     <p class="header text-center">TOPLAM FIYAT</p>
                 </div>
                 <div id="productList" class="productList divide-y divide-gray-200 lg:max-h-[500px] lg:overflow-y-auto mt-4 lg:mt-0">
-                    <!-- <div class="productBox grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative">
+                    <!-- <article class="productBox grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative">
                         <div class="imageBox w-20 m-2">
                             <img src="images/yetiskin-badminton-raket-seti-turkuazturuncu-br100-ad.avif" />
                         </div>
                         <div class="productDetails lg:contents">
-                            <p>TITLE</p>
+                            <p class="lg:pr-0 pr-5">TITLE TITLE TITLE TITLE TITLE</p>
+                            <button class="absolute top-1 right-1">
+                                <img src="images/delete-icon.png" />
+                            </button>
                             <p><span class="lg:hidden">Birim Fiyat: </span>14.99$</p>
                             <div class="countBox flex gap-1 items-center">
                                 <button class="btn">-</button>
@@ -43,11 +46,11 @@
                         <button class="absolute top-1 right-1">
                             <img src="images/delete-icon.png" />
                         </button>
-                    </div>-->
+                    </article> -->
                 </div>
-            </div>
-            <div id="summary" class="summary lg:col-span-1 h-fit">
-                <h1>Sipariş özeti</h1>
+            </section>
+            <aside id="summary" class="summary lg:col-span-1 h-fit">
+                <h2>Sipariş özeti</h2>
                 <div class="summaryBox bg-white mt-3 p-2 divide-y divide-gray-500 gap-2">
                     <div class="subtotal flex justify-between items-center p-4">
                         <p class="text-sm">Ara toplam <span id="item-count">(0 adet)</span></p>
@@ -65,7 +68,7 @@
                         <button class="justify-center items-center bg-blue-800 font-bold text-white m-4 h-10 w-full">Sepeti onayla</button>
                     </div>
                 </div>
-            </div>
+            </aside>
         </main>
         <script type="module" src="../dist/index.js"></script>
     </body>

@@ -554,7 +554,7 @@ video {
   display: none;
 }
 
-h1 {
+h2 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1.25rem;
@@ -631,7 +631,14 @@ h1 {
 }
 
 .title {
+  padding-right: 1.25rem;
   font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+  .title {
+    padding-right: 0px;
+  }
 }
 
 .price {
@@ -741,10 +748,6 @@ input {
 
 .m-4 {
   margin: 1rem;
-}
-
-.m-40 {
-  margin: 10rem;
 }
 
 .mx-2 {
@@ -889,16 +892,12 @@ input {
   padding: 1rem;
 }
 
-.p-10 {
-  padding: 2.5rem;
+.p-5 {
+  padding: 1.25rem;
 }
 
-.p-40 {
-  padding: 10rem;
-}
-
-.p-56 {
-  padding: 14rem;
+.pr-5 {
+  padding-right: 1.25rem;
 }
 
 .text-center {
@@ -933,6 +932,11 @@ input {
 
 .underline-offset-1 {
   text-underline-offset: 1px;
+}
+
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .filter {
@@ -978,10 +982,6 @@ input {
     display: none;
   }
 
-  .lg\:max-h-\[400px\] {
-    max-height: 400px;
-  }
-
   .lg\:max-h-\[500px\] {
     max-height: 500px;
   }
@@ -998,11 +998,7 @@ input {
     overflow-y: auto;
   }
 
-  .lg\:overflow-y-scroll {
-    overflow-y: scroll;
-  }
-
-  .lg\:scroll-auto {
-    scroll-behavior: auto;
+  .lg\:pr-0 {
+    padding-right: 0px;
   }
 }

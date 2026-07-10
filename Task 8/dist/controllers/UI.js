@@ -29,10 +29,18 @@ export default class UI {
         input.value = content;
         input.classList.add(className);
         input.id = className + id;
+        input.min = "0";
         input.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                inputHandler(Number(input.value));
+                input.blur();
             }
+        });
+        input.addEventListener("blur", (event) => {
+            if (Number(input.value) < 0) {
+                alert("Please enter a number larger than 0!");
+                return;
+            }
+            inputHandler(Number(input.value));
         });
         return input;
     }
@@ -54,7 +62,7 @@ export default class UI {
         }
     }
     updateTotal(id, newContent) {
-        const element = document.getElementById("total" + id);
+        const element = document.getElementById("totalValue" + id);
         if (element) {
             element.textContent = newContent + "$";
         }

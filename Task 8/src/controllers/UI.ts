@@ -6,6 +6,13 @@ export default class UI {
         return div;
     }
 
+    createArticle(articleName: string, id: number): HTMLElement {
+        const article = document.createElement("article");
+        article.classList.add(articleName);
+        article.id = articleName + id;
+        return article;
+    }
+
     createP(content: string, className: string, id: number): HTMLParagraphElement {
         const p = document.createElement("p");
         p.textContent = content;
@@ -33,10 +40,19 @@ export default class UI {
         input.value = content;
         input.classList.add(className);
         input.id = className + id;
+        input.min = "0";
+
         input.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                inputHandler(Number(input.value));
+                input.blur();
             }
+        });
+        input.addEventListener("blur", (event) => {
+            if (Number(input.value) < 0) {
+                alert("Please enter a number larger than 0!");
+                return;
+            }
+            inputHandler(Number(input.value));
         });
         return input;
     }
@@ -63,7 +79,7 @@ export default class UI {
     }
 
     updateTotal(id: number, newContent: string): void {
-        const element = document.getElementById("total" + id);
+        const element = document.getElementById("totalValue" + id);
         if (element) {
             element.textContent = newContent + "$";
         }
