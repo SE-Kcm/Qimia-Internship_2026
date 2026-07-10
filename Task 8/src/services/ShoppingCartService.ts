@@ -10,7 +10,7 @@ export default class ShoppingCartService {
         try {
             const cartResponse = await fetch(this.url);
             if (!cartResponse.ok) {
-                console.error("Server Error Status: ${cartResponse.status}");
+                alert("Couldn't load the Cart!");
                 return;
             }
             const data = await cartResponse.json();
@@ -70,15 +70,8 @@ export default class ShoppingCartService {
                     return;
                 }
                 const data = await updatedCart.json();
-                console.log("in Service 1", data.products);
                 return this.mapToCart(data);
             } else if (product != undefined) {
-                console.log({
-                    merge: false,
-                    products: product,
-                    total: cartTotal,
-                    totalQuantity: totalQuantity,
-                });
                 const updatedCart = await fetch(this.url, {
                     method: "PATCH",
                     headers: {
@@ -96,8 +89,9 @@ export default class ShoppingCartService {
                     return;
                 }
                 const data = await updatedCart.json();
-                console.log("in Service 2", data);
                 return this.mapToCart(data);
+            } else {
+                throw new Error("Invalid update request!");
             }
         } catch (networkError) {
             console.error("Network/Fetch Error:", networkError);

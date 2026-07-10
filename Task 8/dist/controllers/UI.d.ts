@@ -1,11 +1,11 @@
 export default class UI {
     createDiv(divName: string, id: number): HTMLDivElement;
+    createArticle(articleName: string, id: number): HTMLElement;
     createP(content: string, className: string, id: number): HTMLParagraphElement;
     createSpan(content: string, className: string, id: number): HTMLSpanElement;
     createImage(srcUrl: string): HTMLImageElement;
     createInput(content: string, className: string, id: number, inputHandler: (val: number) => void): HTMLInputElement;
     createButton(content: string, className: string, id: string, buttonHandler: () => void): HTMLButtonElement;
-    updateAll(id: number, value: number): void;
     updateQuantity(id: number, newContent: number): void;
     updateTotal(id: number, newContent: string): void;
     updateCartSubTotal(newTotal: number): void;

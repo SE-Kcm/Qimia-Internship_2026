@@ -5,7 +5,7 @@ export type Product = {
     quantity: number;
     total: number;
     discountPercentage: number;
-    discountTotal: number;
+    discountedTotal: number;
     thumbnail: string;
 };
 //# sourceMappingURL=Product.d.ts.map

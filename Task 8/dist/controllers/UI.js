@@ -5,6 +5,12 @@ export default class UI {
         div.id = divName + id;
         return div;
     }
+    createArticle(articleName, id) {
+        const article = document.createElement("article");
+        article.classList.add(articleName);
+        article.id = articleName + id;
+        return article;
+    }
     createP(content, className, id) {
         const p = document.createElement("p");
         p.textContent = content;
@@ -36,8 +42,8 @@ export default class UI {
             }
         });
         input.addEventListener("blur", (event) => {
-            if (Number(input.value) < 0) {
-                alert("Please enter a number larger than 0!");
+            if (Number(input.value) < 0 || isNaN(Number(input.value))) {
+                alert("Please enter a valid Input!");
                 return;
             }
             inputHandler(Number(input.value));
@@ -51,9 +57,6 @@ export default class UI {
         btn.id = id;
         btn.addEventListener("click", buttonHandler);
         return btn;
-    }
-    updateAll(id, value) {
-        this.updateQuantity(id, value);
     }
     updateQuantity(id, newContent) {
         const element = document.getElementById("quantity" + id);
@@ -74,9 +77,6 @@ export default class UI {
         }
     }
     updateCartTotal(newTotal) {
-        // const element = document.getElementById("checkout");
-        // element?.querySelector("h2");
-        // element!.textContent = "TOTAL: " + newTotal.toFixed(2) + "$";
         const element = document.getElementById("totalCart");
         if (element) {
             element.textContent = newTotal.toFixed(2) + "$";
@@ -89,11 +89,13 @@ export default class UI {
         }
     }
     deleteProductBox(id) {
-        document.getElementById("productBox" + id)?.remove();
+        const box = document.getElementById("productBox" + id);
+        if (box) {
+            box.remove();
+        }
     }
     toggle(toggle) {
         if (toggle) {
-            console.log("in toggle");
             const emptyBox = document.getElementById("emptyCart");
             if (emptyBox) {
                 emptyBox.classList.remove("hidden");
