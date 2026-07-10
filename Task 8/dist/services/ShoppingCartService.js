@@ -27,20 +27,6 @@ export default class ShoppingCartService {
             typeof data.totalQuantity !== "number") {
             throw new Error("Invalid cart data");
         }
-        // for (const product of data.products) {
-        //     if (
-        //         typeof product.id !== "number" ||
-        //         typeof product.title !== "string" ||
-        //         typeof product.price !== "number" ||
-        //         typeof product.quantity != "number" ||
-        //         typeof product.total != "number" ||
-        //         typeof product.discountPercentage != "number" ||
-        //         typeof product.discountedTotal != "number" ||
-        //         typeof product.thumbnail != "string"
-        //     ) {
-        //         throw new Error("Invalid product");
-        //     }
-        // }
         const cart = {
             id: data.id,
             products: data.products,
