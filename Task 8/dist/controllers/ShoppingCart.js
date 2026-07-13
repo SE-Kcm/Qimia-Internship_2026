@@ -32,45 +32,6 @@ export default class ShoppingCart {
                 const id = product.id;
                 const cartItem = new CartItem(product, () => this.decreaseQuantity(id), () => this.increaseQuantity(id), (value) => this.changeQuantity(id, value), deleteIconSrc, () => this.deleteProducts(id));
                 const productBox = cartItem.createItem();
-                // const productBox = this.ui.createArticle("productBox", id);
-                // const imgBox = this.ui.createDiv("imgageBox", id);
-                // const img = this.ui.createImage(product.thumbnail);
-                // imgBox.appendChild(img);
-                // const productDetails = this.ui.createDiv("productDetails", id);
-                // const title = this.ui.createP(product.title, "title", id);
-                // const price = this.ui.createP(product.price.toFixed(2) + "$", "price", id);
-                // const spanPrice = this.ui.createSpan("BIRIM FIYAT: ", "lg:hidden", id);
-                // price.prepend(spanPrice);
-                // const quantityBox = this.ui.createDiv("quantityBox", id);
-                // const decreaseHandler = () => this.decreaseQuantity(id);
-                // const btnDecrease = this.ui.createButton("-", "btn", "dec" + id, decreaseHandler);
-                // const quantity = this.ui.createInput(product.quantity.toString(), "quantity", id, (value) => this.changeQuantity(id, value));
-                // const increaseHandler = () => this.increaseQuantity(id);
-                // const btnIncrease = this.ui.createButton("+", "btn", "inc" + id, increaseHandler);
-                // quantityBox.appendChild(btnDecrease);
-                // quantityBox.appendChild(quantity);
-                // quantityBox.appendChild(btnIncrease);
-                // const total = this.ui.createP("", "total", id);
-                // const spanTotalLabel = this.ui.createSpan("TOPLAM FIYAT: ", "lg:hidden", id);
-                // const spanTotal = this.ui.createP(product.total.toFixed(2) + "$", "totalValue", id);
-                // total.appendChild(spanTotalLabel);
-                // total.appendChild(spanTotal);
-                // productDetails.appendChild(title);
-                // productDetails.appendChild(price);
-                // productDetails.appendChild(quantityBox);
-                // productDetails.appendChild(total);
-                // const deleteIcon = this.ui.createImage(deleteIconSrc);
-                // const closeHandler = () => this.deleteProducts(id);
-                // const btnClose = this.ui.createButton("", "btn-close", "clo" + id, () => {
-                //     this.deleteProducts(id);
-                //     btnDecrease.removeEventListener("click", decreaseHandler);
-                //     btnIncrease.removeEventListener("click", increaseHandler);
-                //     btnClose.removeEventListener("click", closeHandler);
-                // });
-                // btnClose.appendChild(deleteIcon);
-                // productBox.appendChild(imgBox);
-                // productBox.appendChild(productDetails);
-                // productBox.appendChild(btnClose);
                 productList.appendChild(productBox);
             }
         }
@@ -78,6 +39,7 @@ export default class ShoppingCart {
     async increaseQuantity(id) {
         let product = this.cart.products.find((product) => product.id === id);
         if (product) {
+            this.ui.showLoader(id);
             const updatedCart = await this.service.updateCart(this.cart.total + product.price, this.cart.totalQuantity + 1, id, product.quantity + 1, product.total + product.price);
             if (updatedCart) {
                 this.cart.total = this.cart.total + product.price;
@@ -90,6 +52,7 @@ export default class ShoppingCart {
                 this.ui.updateCartQuantity(this.cart.totalQuantity);
                 this.calculateCartTotal();
                 this.calculateCartSubTotal();
+                this.ui.hideLoader(id);
             }
         }
         else {
@@ -103,6 +66,7 @@ export default class ShoppingCart {
             if (quantity > 1) {
                 quantity = product.quantity - 1;
                 const total = product.total - product.price;
+                this.ui.showLoader(id);
                 const updatedCart = await this.service.updateCart(this.cart.total - product.price, this.cart.totalQuantity - 1, id, quantity, total);
                 if (updatedCart) {
                     this.cart.total = this.cart.total - product.price;
@@ -115,6 +79,7 @@ export default class ShoppingCart {
                     this.ui.updateCartQuantity(this.cart.totalQuantity);
                     this.calculateCartTotal();
                     this.calculateCartSubTotal();
+                    this.ui.hideLoader(id);
                 }
             }
             else if (quantity <= 1) {
@@ -164,7 +129,7 @@ export default class ShoppingCart {
             const newProducts = this.cart.products.filter((item) => item.id != id);
             const newCartTotal = this.cart.total - product.total;
             const newCartQuantity = this.cart.totalQuantity - product.quantity;
-            const updatedCart = await this.service.updateCart(newCartTotal, newCartQuantity, undefined, undefined, undefined, newProducts);
+            const updatedCart = await this.service.updateCart(newCartTotal, newCartQuantity, newProducts);
             if (updatedCart) {
                 this.cart.total = newCartTotal;
                 this.cart.totalQuantity = newCartQuantity;

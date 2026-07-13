@@ -1,4 +1,6 @@
 import UI from "../controllers/UI.js";
+import ChangeQuantityButton from "./ChangeQuantityButton.js";
+import QuantityInputField from "./QuantityInputField.js";
 export default class CartItem {
     product;
     ui;
@@ -40,18 +42,21 @@ export default class CartItem {
         const spanPrice = this.ui.createSpan("BIRIM FIYAT: ", "lg:hidden", id);
         price.prepend(spanPrice);
         const quantityBox = this.createQuantityBox(id);
+        const svg = this.ui.createSpinner(id);
         const total = this.createTotal(id);
         productDetails.appendChild(title);
         productDetails.appendChild(price);
         productDetails.appendChild(quantityBox);
+        productDetails.appendChild(svg);
         productDetails.appendChild(total);
         return productDetails;
     }
     createQuantityBox(id) {
         const quantityBox = this.ui.createDiv("quantityBox", id);
-        const btnDecrease = this.ui.createButton("-", "btn", "dec" + id, this.decreaseHandler);
-        const quantity = this.ui.createInput(this.product.quantity.toString(), "quantity", id, this.changeQuantityHandler);
-        const btnIncrease = this.ui.createButton("+", "btn", "inc" + id, this.increaseHandler);
+        const btnDecrease = new ChangeQuantityButton("dec" + id, "-", ["btn"], this.decreaseHandler).getElement(); //this.ui.createButton("-", "btn", "dec" + id, this.decreaseHandler);
+        const quantity = new QuantityInputField(this.product.quantity, "quantity" + id, this.changeQuantityHandler).getElement();
+        //const quantity = this.ui.createInput(this.product.quantity, "quantity", id, this.changeQuantityHandler);
+        const btnIncrease = new ChangeQuantityButton("inc" + id, "+", ["btn"], this.increaseHandler).getElement(); //this.ui.createButton("+", "btn", "inc" + id, this.increaseHandler);
         quantityBox.appendChild(btnDecrease);
         quantityBox.appendChild(quantity);
         quantityBox.appendChild(btnIncrease);
@@ -60,7 +65,7 @@ export default class CartItem {
     createTotal(id) {
         const total = this.ui.createP("", "total", id);
         const spanTotalLabel = this.ui.createSpan("TOPLAM FIYAT: ", "lg:hidden", id);
-        const spanTotal = this.ui.createP(this.product.total.toFixed(2) + "$", "totalValue", id);
+        const spanTotal = this.ui.createSpan(this.product.total.toFixed(2) + "$", "totalValue", id);
         total.appendChild(spanTotalLabel);
         total.appendChild(spanTotal);
         return total;
@@ -68,7 +73,7 @@ export default class CartItem {
     createCloseOption(id) {
         const deleteIcon = this.ui.createImage(this.deleteIconSrc);
         //const closeHandler = () => this.deleteProductsHandler(id);
-        const btnClose = this.ui.createButton("", "btn-close", "clo" + id, this.deleteProductsHandler);
+        const btnClose = new ChangeQuantityButton("clo" + id, "", ["btn-close"], this.deleteProductsHandler).getElement(); //this.ui.createButton("", "btn-close", "clo" + id, this.deleteProductsHandler);
         btnClose.appendChild(deleteIcon);
         return btnClose;
     }

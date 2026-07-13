@@ -44,9 +44,11 @@ export default class ShoppingCartService {
         return cart;
     }
 
-    async updateCart(cartTotal: number, totalQuantity: number, id?: number, quantity?: number, total?: number, product?: Product[]): Promise<Cart | undefined> {
+    async updateCart(cartTotal: number, totalQuantity: number, id: number, quantity: number, total: number): Promise<Cart | undefined>;
+    async updateCart(cartTotal: number, totalQuantity: number, product: Product[]): Promise<Cart | undefined>;
+    async updateCart(cartTotal: number, totalQuantity: number, idOrProduct?: number | Product[], quantity?: number, total?: number): Promise<Cart | undefined> {
         try {
-            if (id != undefined && quantity != undefined && total != undefined) {
+            if (typeof idOrProduct === "number") {
                 const updatedCart = await fetch(this.url, {
                     method: "PATCH",
                     headers: {
@@ -56,7 +58,7 @@ export default class ShoppingCartService {
                         merge: true,
                         products: [
                             {
-                                id: id,
+                                id: idOrProduct,
                                 quantity: quantity,
                                 total: total,
                             },
@@ -71,7 +73,7 @@ export default class ShoppingCartService {
                 }
                 const data = await updatedCart.json();
                 return this.mapToCart(data);
-            } else if (product != undefined) {
+            } else if (Array.isArray(idOrProduct)) {
                 const updatedCart = await fetch(this.url, {
                     method: "PATCH",
                     headers: {
@@ -79,7 +81,7 @@ export default class ShoppingCartService {
                     },
                     body: JSON.stringify({
                         merge: false,
-                        products: product,
+                        products: idOrProduct,
                         total: cartTotal,
                         totalQuantity: totalQuantity,
                     }),
@@ -90,9 +92,9 @@ export default class ShoppingCartService {
                 }
                 const data = await updatedCart.json();
                 return this.mapToCart(data);
-            } else {
-                throw new Error("Invalid update request!");
-            }
+            } //else {
+            //     throw new Error("Invalid update request!");
+            // }
         } catch (networkError) {
             console.error("Network/Fetch Error:", networkError);
         }

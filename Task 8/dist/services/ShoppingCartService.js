@@ -38,9 +38,9 @@ export default class ShoppingCartService {
         };
         return cart;
     }
-    async updateCart(cartTotal, totalQuantity, id, quantity, total, product) {
+    async updateCart(cartTotal, totalQuantity, idOrProduct, quantity, total) {
         try {
-            if (id != undefined && quantity != undefined && total != undefined) {
+            if (typeof idOrProduct === "number") {
                 const updatedCart = await fetch(this.url, {
                     method: "PATCH",
                     headers: {
@@ -50,7 +50,7 @@ export default class ShoppingCartService {
                         merge: true,
                         products: [
                             {
-                                id: id,
+                                id: idOrProduct,
                                 quantity: quantity,
                                 total: total,
                             },
@@ -66,7 +66,7 @@ export default class ShoppingCartService {
                 const data = await updatedCart.json();
                 return this.mapToCart(data);
             }
-            else if (product != undefined) {
+            else if (Array.isArray(idOrProduct)) {
                 const updatedCart = await fetch(this.url, {
                     method: "PATCH",
                     headers: {
@@ -74,7 +74,7 @@ export default class ShoppingCartService {
                     },
                     body: JSON.stringify({
                         merge: false,
-                        products: product,
+                        products: idOrProduct,
                         total: cartTotal,
                         totalQuantity: totalQuantity,
                     }),
@@ -85,10 +85,9 @@ export default class ShoppingCartService {
                 }
                 const data = await updatedCart.json();
                 return this.mapToCart(data);
-            }
-            else {
-                throw new Error("Invalid update request!");
-            }
+            } //else {
+            //     throw new Error("Invalid update request!");
+            // }
         }
         catch (networkError) {
             console.error("Network/Fetch Error:", networkError);

@@ -5,6 +5,7 @@ export default class ShoppingCartService {
     constructor(url: string);
     fetchCart(): Promise<Cart | undefined>;
     mapToCart(data: any): Cart;
-    updateCart(cartTotal: number, totalQuantity: number, id?: number, quantity?: number, total?: number, product?: Product[]): Promise<Cart | undefined>;
+    updateCart(cartTotal: number, totalQuantity: number, id: number, quantity: number, total: number): Promise<Cart | undefined>;
+    updateCart(cartTotal: number, totalQuantity: number, product: Product[]): Promise<Cart | undefined>;
 }
 //# sourceMappingURL=ShoppingCartService.d.ts.map
