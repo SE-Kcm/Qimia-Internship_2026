@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" href="../dist/output.css" />
+    </head>
+    <body class="bg-gray-100">
+        <header class="h-20 bg-white w-screen">
+            <div class="container mx-auto flex h-full">
+                <a class="hidden md:flex mx-2 justify-center items-center" href="url"> &lt; <span class="underline underline-offset-1 font-bold text-sm ml-1">ALIŞVERİŞE DEVAM ET</span></a>
+                <img class="w-20 h-20 absolute md:left-2/4" src="./images/Logo.png" />
+            </div>
+        </header>
+        <main class="container mx-auto grid lg:grid-cols-3 grid-cols-1 gap-5 p-4">
+            <section class="cart lg:col-span-2">
+                <h2>Sepetim</h2>
+                <div id="emptyCart" class="hidden bg-white p-5 flex justify-center items-center mt-4">
+                    <img class="w-72" src="images/emptyCartIcon.png" />
+                </div>
+                <div id="columnNames" class="columnNames hidden lg:grid lg:grid-cols-5 mt-4 mb-2">
+                    <p class="header col-span-2">ÜRÜN</p>
+                    <p class="header text-center">BİRİM FİYAT</p>
+                    <p class="header text-center">ADET</p>
+                    <p class="header text-center">TOPLAM FIYAT</p>
+                </div>
+                <div id="productList" class="productList divide-y divide-gray-200 lg:max-h-[500px] lg:overflow-y-auto mt-4 lg:mt-0">
+                    <!-- <article class="productBox grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative">
+                        <div class="imageBox w-20 m-2">
+                            <img src="images/yetiskin-badminton-raket-seti-turkuazturuncu-br100-ad.avif" />
+                        </div>
+                        <div class="productDetails lg:contents">
+                            <p class="lg:pr-0 pr-5">TITLE TITLE TITLE TITLE TITLE</p>
+                            <button class="absolute top-1 right-1">n
+                                <img src="images/delete-icon.png" />
+                            </button>
+                            <p><span class="lg:hidden">Birim Fiyat: </span>14.99$</p>
+                            <div class="countBox flex gap-1 items-center">
+                                <button class="btn">-</button>
+                                <p class="count">5</p>
+                                <button class="btn">+</button>
+                            </div>
+                            <p>TITLE</p>
+                        </div>
+                        <button class="absolute top-1 right-1">
+                            <img src="images/delete-icon.png" />
+                        </button>
+                    </article> -->
+                </div>
+            </section>
+            <aside id="summary" class="summary lg:col-span-1 h-fit">
+                <h2>Sipariş özeti</h2>
+                <div class="summaryBox bg-white mt-3 p-2 divide-y divide-gray-500 gap-2">
+                    <div class="subtotal flex justify-between items-center p-4">
+                        <p class="text-sm">Ara toplam <span id="item-count">(0 adet)</span></p>
+                        <p id="subtotalPrice" class="text-sm">0.00$</p>
+                    </div>
+                    <div class="shippment flex md:justify-between items-center p-4 gap-1">
+                        <p class="text-sm">Kargo</p>
+                        <p class="text-sm text-right">Bir sonraki adımda hesaplanacak</p>
+                    </div>
+                    <div class="total flex justify-between items-center p-4">
+                        <p class="text-sm font-bold">Toplam <span class="font-normal">(KDV dahil)</span></p>
+                        <p id="totalCart" class="text-sm">0.00$</p>
+                    </div>
+                    <div class="flex justify-center">
+                        <button class="justify-center items-center bg-blue-800 font-bold text-white m-4 h-10 w-full">Sepeti onayla</button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        <script type="module" src="../dist/index.js"></script>
+    </body>
+</html>

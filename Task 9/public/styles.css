@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h2 {
+        @apply text-xl text-black font-bold mx-auto mt-5;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+
+@layer components {
+    .header {
+        @apply text-xs;
+    }
+
+    .productBox {
+        @apply grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative;
+    }
+
+    .imageBox {
+        @apply w-20 m-2;
+    }
+
+    .productDetails {
+        @apply lg:contents;
+    }
+
+    .title {
+        @apply font-bold lg:pr-0 pr-5;
+    }
+
+    .price {
+        @apply md:flex md:text-base md:justify-center md:items-center text-sm;
+    }
+
+    .total {
+        @apply md:flex md:text-base md:justify-center md:items-center text-sm;
+    }
+
+    .btn {
+        @apply flex justify-center items-center w-7 h-7 border-2 border-gray-300 text-sm font-semibold p-1;
+    }
+    .quantityBox {
+        @apply flex gap-1 justify-center items-center;
+    }
+    .quantity {
+        @apply flex border-2 border-gray-300 w-7 h-7 items-center justify-center;
+    }
+
+    input {
+        @apply text-center w-7 h-7 border-2 border-gray-300 text-sm font-semibold;
+    }
+
+    .btn-close {
+        @apply absolute top-1 right-1;
+    }
+
+    svg {
+        @apply text-gray-300 hidden animate-spin bg-red-500 border-2 border-red-700;
+    }
+
+    .spinner {
+        @apply hidden h-8 w-8 animate-spin duration-200 rounded-full border-4 border-gray-200 border-t-blue-500;
+    }
+}
