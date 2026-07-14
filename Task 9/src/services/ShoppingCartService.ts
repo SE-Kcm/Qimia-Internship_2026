@@ -88,6 +88,7 @@ export default class ShoppingCartService {
     changeQuantity(id: number, newQuantity: number): Product {
         const product = this.cart.products.find((item) => item.id === id);
         if (product) {
+            console.log("hello");
             this.cart.totalQuantity = this.cart.totalQuantity - product.quantity + newQuantity;
             this.cart.total = this.cart.total - product.total + product.price * newQuantity;
             product.quantity = newQuantity;

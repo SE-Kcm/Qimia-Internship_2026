@@ -124,9 +124,9 @@ export default class UI {
     createSpinner(id) {
         const div = document.createElement("div");
         div.classList.add("spinner");
+        div.classList.add("hidden");
         div.id = "spinner" + id;
         return div;
-        //<div class="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-blue-500"></div>
     }
     showLoader(id) {
         const element = document.getElementById("total" + id);

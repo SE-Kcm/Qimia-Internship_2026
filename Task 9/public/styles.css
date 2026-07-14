@@ -65,6 +65,9 @@
     }
 
     .spinner {
-        @apply hidden h-8 w-8 animate-spin duration-200 rounded-full border-4 border-gray-200 border-t-blue-500;
+        @apply h-8 w-8 animate-spin duration-200 rounded-full border-4 border-gray-200 border-t-blue-500;
+    }
+    .totalDiv {
+        @apply flex justify-center items-center;
     }
 }

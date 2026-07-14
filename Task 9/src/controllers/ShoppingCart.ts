@@ -45,6 +45,7 @@ export default class ShoppingCart {
                 productList.appendChild(productBox);
             }
         }
+        this.ui.updateCartQuantity(this.cart.totalQuantity);
         this.ui.updateCartSubTotal(this.cart.total);
         this.ui.updateCartTotal(this.cart.total);
     }
@@ -93,6 +94,7 @@ export default class ShoppingCart {
     }
 
     changeQuantity(id: number, newQuantity: number) {
+        this.ui.showLoader(id);
         try {
             if (newQuantity === 0) {
                 this.deleteProducts(id);
@@ -105,10 +107,10 @@ export default class ShoppingCart {
                 this.ui.updateCartSubTotal(cart.total);
                 this.ui.updateCartQuantity(cart.totalQuantity);
             }
-
-            this.service.changeQuantity(id, newQuantity);
         } catch (error) {
             console.error(error);
+        } finally {
+            this.ui.hideLoader(id);
         }
     }
 

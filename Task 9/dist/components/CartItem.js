@@ -42,13 +42,15 @@ export default class CartItem {
         const spanPrice = this.ui.createSpan("BIRIM FIYAT: ", "lg:hidden", id);
         price.prepend(spanPrice);
         const quantityBox = this.createQuantityBox(id);
-        const svg = this.ui.createSpinner(id);
+        const totalDiv = this.ui.createDiv("totalDiv", id);
+        const spinner = this.ui.createSpinner(id);
         const total = this.createTotal(id);
+        totalDiv.appendChild(spinner);
+        totalDiv.appendChild(total);
         productDetails.appendChild(title);
         productDetails.appendChild(price);
         productDetails.appendChild(quantityBox);
-        productDetails.appendChild(svg);
-        productDetails.appendChild(total);
+        productDetails.appendChild(totalDiv);
         return productDetails;
     }
     createQuantityBox(id) {

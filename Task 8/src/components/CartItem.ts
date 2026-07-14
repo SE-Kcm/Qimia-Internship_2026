@@ -55,14 +55,18 @@ export default class CartItem {
         price.prepend(spanPrice);
 
         const quantityBox = this.createQuantityBox(id);
-        const svg = this.ui.createSpinner(id);
+
+        const totalDiv = this.ui.createDiv("totalDiv", id);
+        const spinner = this.ui.createSpinner(id);
         const total = this.createTotal(id);
+
+        totalDiv.appendChild(spinner);
+        totalDiv.appendChild(total);
 
         productDetails.appendChild(title);
         productDetails.appendChild(price);
         productDetails.appendChild(quantityBox);
-        productDetails.appendChild(svg);
-        productDetails.appendChild(total);
+        productDetails.appendChild(totalDiv);
 
         return productDetails;
     }
@@ -71,7 +75,6 @@ export default class CartItem {
         const quantityBox = this.ui.createDiv("quantityBox", id);
         const btnDecrease = new ChangeQuantityButton("dec" + id, "-", ["btn"], this.decreaseHandler).getElement(); //this.ui.createButton("-", "btn", "dec" + id, this.decreaseHandler);
         const quantity = new QuantityInputField(this.product.quantity, "quantity" + id, this.changeQuantityHandler).getElement();
-        //const quantity = this.ui.createInput(this.product.quantity, "quantity", id, this.changeQuantityHandler);
         const btnIncrease = new ChangeQuantityButton("inc" + id, "+", ["btn"], this.increaseHandler).getElement(); //this.ui.createButton("+", "btn", "inc" + id, this.increaseHandler);
 
         quantityBox.appendChild(btnDecrease);

@@ -2,18 +2,7 @@
 import { initialCart } from "../constants/InitialCart.js";
 export default class ShoppingCartService {
     cart = initialCart;
-    constructor() {
-        // this.cart = {
-        //     id: cartData.id,
-        //     products: cartData.products,
-        //     total: cartData.total,
-        //     discountedTotal: cartData.discountedTotal,
-        //     userId: cartData.userId,
-        //     totalProducts: cartData.totalProducts,
-        //     totalQuantity: cartData.totalQuantity,
-        // };
-        //await this.createInitialCart();
-    }
+    constructor() { }
     async createInitialCart() {
         const response = await fetch("../mocks/cart.json");
         const cartData = await response.json();
@@ -89,6 +78,7 @@ export default class ShoppingCartService {
     changeQuantity(id, newQuantity) {
         const product = this.cart.products.find((item) => item.id === id);
         if (product) {
+            console.log("hello");
             this.cart.totalQuantity = this.cart.totalQuantity - product.quantity + newQuantity;
             this.cart.total = this.cart.total - product.total + product.price * newQuantity;
             product.quantity = newQuantity;

@@ -80,6 +80,7 @@ export default class ShoppingCart {
                 quantity = product.quantity - 1;
                 const total = product.total - product.price;
                 this.ui.showLoader(id);
+
                 const updatedCart = await this.service.updateCart(this.cart.total - product.price, this.cart.totalQuantity - 1, id, quantity, total);
                 if (updatedCart) {
                     this.cart.total = this.cart.total - product.price;
@@ -109,22 +110,26 @@ export default class ShoppingCart {
             if (newQuantity === 0) {
                 this.deleteProducts(id);
             } else if (product.quantity != newQuantity) {
+                this.ui.showLoader(id);
                 const newTotal = newQuantity * product.price;
                 const newCartTotal = this.cart.total - product.total + newTotal;
                 const newCartQuantity = this.cart.totalQuantity - product.quantity + newQuantity;
                 const updatedCart = await this.service.updateCart(newCartTotal, newCartQuantity, id, newQuantity, newTotal);
                 if (updatedCart) {
                     this.cart.total = newCartTotal;
-                    this.cart.totalQuantity = newQuantity;
+                    this.cart.totalQuantity = newCartQuantity;
+
                     product.total = newTotal;
                     product.quantity = newQuantity;
 
                     this.ui.updateQuantity(id, product.quantity);
                     this.ui.updateTotal(id, product.total.toFixed(2));
                     this.ui.updateCartTotal(this.cart.total);
+                    this.ui.updateCartSubTotal(this.cart.total);
                     this.ui.updateCartQuantity(this.cart.totalQuantity);
-                    this.calculateCartTotal();
-                    this.calculateCartSubTotal();
+                    //this.calculateCartTotal();
+                    //this.calculateCartSubTotal();
+                    this.ui.hideLoader(id);
                 }
             }
         } else {

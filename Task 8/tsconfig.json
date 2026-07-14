@@ -10,7 +10,8 @@
         "module": "esnext",
         "target": "es2025",
         "moduleResolution": "Bundler",
-        "types": ["jest"],
+        "ignoreDeprecations": "6.0",
+        "types": ["jest", "node"],
         // For nodejs:
         // "lib": ["esnext"],
         // "types": ["node"],
@@ -45,4 +46,6 @@
             "@/*": ["./src/*"]
         }
     }
+    //"include": ["src/tests/**/*.ts"]
+    //"exclude": ["dist", "node_modules"]
 }
