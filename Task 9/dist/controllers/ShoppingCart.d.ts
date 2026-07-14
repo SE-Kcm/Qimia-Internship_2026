@@ -1,12 +1,13 @@
+import type { Cart } from "../models/Cart.js";
 import UI from "./UI.js";
 import ShoppingCartService from "../services/ShoppingCartService.js";
-import type { Product } from "../models/Product.js";
 export default class ShoppingCart {
     ui: UI;
     service: ShoppingCartService;
+    cart: Cart;
     constructor(url: string);
     init(): Promise<void>;
-    listProducts(products: Product[]): void;
+    listProducts(): void;
     increaseQuantity(id: number): void;
     decreaseQuantity(id: number): void;
     changeQuantity(id: number, newQuantity: number): void;

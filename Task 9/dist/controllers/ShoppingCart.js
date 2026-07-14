@@ -6,6 +6,7 @@ import CartItem from "../components/CartItem.js";
 export default class ShoppingCart {
     ui;
     service;
+    cart = initialCart;
     constructor(url) {
         this.ui = new UI();
         this.service = new ShoppingCartService();
@@ -14,32 +15,36 @@ export default class ShoppingCart {
     async init() {
         try {
             await this.service.createInitialCart();
-            this.listProducts(this.service.getAllProducts());
+            this.cart = this.service.getCart();
+            this.listProducts();
         }
         catch (error) {
             console.error(error);
         }
     }
-    listProducts(products) {
+    listProducts() {
         const productList = document.getElementById("productList");
         if (productList) {
-            for (const product of products) {
+            for (const product of this.cart.products) {
                 const id = product.id;
                 const cartItem = new CartItem(product, () => this.decreaseQuantity(id), () => this.increaseQuantity(id), (value) => this.changeQuantity(id, value), deleteIconSrc, () => this.deleteProducts(id));
                 const productBox = cartItem.createItem();
                 productList.appendChild(productBox);
             }
         }
+        this.ui.updateCartSubTotal(this.cart.total);
+        this.ui.updateCartTotal(this.cart.total);
     }
     increaseQuantity(id) {
         this.ui.showLoader(id);
         try {
             const product = this.service.increaseQuantity(id);
-            const cart = this.service.getCart();
+            this.cart = this.service.getCart();
             this.ui.updateQuantity(id, product.quantity);
             this.ui.updateTotal(id, product.total.toFixed(2));
-            this.ui.updateCartTotal(cart.total);
-            this.ui.updateCartQuantity(cart.totalQuantity);
+            this.ui.updateCartTotal(this.cart.total);
+            this.ui.updateCartSubTotal(this.cart.total);
+            this.ui.updateCartQuantity(this.cart.totalQuantity);
         }
         catch (error) {
             console.error(error);
@@ -51,12 +56,23 @@ export default class ShoppingCart {
     decreaseQuantity(id) {
         this.ui.showLoader(id);
         try {
-            const product = this.service.decreaseQuantity(id);
-            const cart = this.service.getCart();
-            this.ui.updateQuantity(id, product.quantity);
-            this.ui.updateTotal(id, product.total.toFixed(2));
-            this.ui.updateCartTotal(cart.total);
-            this.ui.updateCartQuantity(cart.totalQuantity);
+            const currentProduct = this.cart.products.find((item) => item.id === id);
+            if (currentProduct) {
+                const currentQuantity = currentProduct.quantity;
+                if (currentQuantity > 1) {
+                    const product = this.service.decreaseQuantity(id);
+                    this.cart = this.service.getCart();
+                    this.ui.updateQuantity(id, product.quantity);
+                    this.ui.updateTotal(id, product.total.toFixed(2));
+                    this.ui.updateCartTotal(this.cart.total);
+                    this.ui.updateCartSubTotal(this.cart.total);
+                    this.ui.updateCartQuantity(this.cart.totalQuantity);
+                }
+                else if (currentQuantity <= 1) {
+                    this.deleteProducts(id);
+                    this.cart = this.service.getCart();
+                }
+            }
         }
         catch (error) {
             console.error(error);
@@ -76,6 +92,7 @@ export default class ShoppingCart {
                 this.ui.updateQuantity(id, product.quantity);
                 this.ui.updateTotal(id, product.total.toFixed(2));
                 this.ui.updateCartTotal(cart.total);
+                this.ui.updateCartSubTotal(cart.total);
                 this.ui.updateCartQuantity(cart.totalQuantity);
             }
             this.service.changeQuantity(id, newQuantity);
@@ -87,12 +104,14 @@ export default class ShoppingCart {
     async deleteProducts(id) {
         try {
             this.service.deleteProducts(id);
-            const cart = this.service.getCart();
-            if (cart.products.length === 1) {
+            this.cart = this.service.getCart();
+            if (this.cart.totalProducts === 0) {
                 this.ui.toggle(true);
             }
-            this.ui.updateCartTotal(cart.total);
-            this.ui.updateCartQuantity(cart.totalQuantity);
+            this.ui.updateCartTotal(this.cart.total);
+            this.ui.updateCartSubTotal(this.cart.total);
+            this.ui.updateCartQuantity(this.cart.totalQuantity);
+            this.ui.deleteProductBox(id);
         }
         catch (error) {
             console.error(error);

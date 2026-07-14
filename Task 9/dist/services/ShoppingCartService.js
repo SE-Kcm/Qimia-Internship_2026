@@ -72,8 +72,8 @@ export default class ShoppingCartService {
         if (product) {
             if (product.quantity > 1) {
                 product.quantity -= 1;
-                product.total -= product.price;
-                this.cart.total -= product.price;
+                product.total = Math.abs(product.total - product.price);
+                this.cart.total = Math.abs(this.cart.total - product.price);
                 this.cart.totalQuantity -= 1;
                 return product;
             }
@@ -90,9 +90,9 @@ export default class ShoppingCartService {
         const product = this.cart.products.find((item) => item.id === id);
         if (product) {
             this.cart.totalQuantity = this.cart.totalQuantity - product.quantity + newQuantity;
+            this.cart.total = this.cart.total - product.total + product.price * newQuantity;
             product.quantity = newQuantity;
             product.total = product.price * newQuantity;
-            this.cart.total += product.total;
             return product;
         }
         else {
@@ -102,9 +102,10 @@ export default class ShoppingCartService {
     deleteProducts(id) {
         const product = this.cart.products.find((item) => item.id === id);
         if (product) {
-            this.cart.total -= product.total;
+            this.cart.total = Math.abs(this.cart.total - product.total);
             this.cart.totalQuantity -= product.quantity;
             this.cart.totalProducts -= 1;
+            this.cart.products.filter((item) => item.id != id);
         }
         else {
             throw new Error("Product to be deleted not found");
