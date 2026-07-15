@@ -3,6 +3,7 @@ import ShoppingCartService from "./services/ShoppingCartService.js";
 import type { Product } from "./models/Product.js";
 
 const cart = new ShoppingCart("https://dummyjson.com/carts/3");
+cart.init();
 
 //Error Handling - Test
 //const cart = new ShoppingCart("https://dummyjson.com/carts/abc");

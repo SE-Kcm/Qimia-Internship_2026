@@ -13,16 +13,22 @@ export default class ShoppingCart {
         this.ui = new UI();
         this.service = new ShoppingCartService(url);
         this.cart = initialCart;
-        this.init();
+        //this.init();
     }
     async init() {
-        const data = await this.service.fetchCart();
-        if (data) {
-            this.cart = data;
-            this.listProducts();
-            this.ui.updateCartQuantity(this.cart.totalQuantity);
-            this.calculateCartTotal();
-            this.calculateCartSubTotal();
+        try {
+            const data = await this.service.fetchCart();
+            if (data) {
+                this.cart = data;
+                this.listProducts();
+                this.ui.updateCartQuantity(this.cart.totalQuantity);
+                this.calculateCartTotal();
+                this.calculateCartSubTotal();
+            }
+        }
+        catch (error) {
+            console.error(error);
+            alert("Couldn't load the Cart!");
         }
     }
     listProducts() {

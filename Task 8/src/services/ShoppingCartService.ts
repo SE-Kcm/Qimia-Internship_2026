@@ -10,13 +10,14 @@ export default class ShoppingCartService {
         try {
             const cartResponse = await fetch(this.url);
             if (!cartResponse.ok) {
-                alert("Couldn't load the Cart!");
-                return;
+                // alert("Couldn't load the Cart!");
+                // return;
+                throw new Error("Couldn't load the Cart!");
             }
             const data = await cartResponse.json();
             return this.mapToCart(data);
         } catch (networkError) {
-            console.error("Network/Fetch Error:", networkError);
+            throw networkError;
         }
     }
 
@@ -68,7 +69,7 @@ export default class ShoppingCartService {
                     }),
                 });
                 if (!updatedCart.ok) {
-                    console.error("Server Error Status: ${cartResponse.status}");
+                    console.error(`Server Error Status: ${updatedCart.status}`);
                     return;
                 }
                 const data = await updatedCart.json();
@@ -87,7 +88,7 @@ export default class ShoppingCartService {
                     }),
                 });
                 if (!updatedCart.ok) {
-                    console.error("Server Error Status: ${cartResponse.status}");
+                    console.error(`Server Error Status: ${updatedCart.status}`);
                     return;
                 }
                 const data = await updatedCart.json();

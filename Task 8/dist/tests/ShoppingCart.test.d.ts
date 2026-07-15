@@ -1,2 +1,2 @@
-export declare function sum(a: number, b: number): number;
+export {};
 //# sourceMappingURL=ShoppingCart.test.d.ts.map
