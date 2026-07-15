@@ -78,7 +78,6 @@ export default class ShoppingCartService {
     changeQuantity(id, newQuantity) {
         const product = this.cart.products.find((item) => item.id === id);
         if (product) {
-            console.log("hello");
             this.cart.totalQuantity = this.cart.totalQuantity - product.quantity + newQuantity;
             this.cart.total = this.cart.total - product.total + product.price * newQuantity;
             product.quantity = newQuantity;
@@ -95,7 +94,7 @@ export default class ShoppingCartService {
             this.cart.total = Math.abs(this.cart.total - product.total);
             this.cart.totalQuantity -= product.quantity;
             this.cart.totalProducts -= 1;
-            this.cart.products.filter((item) => item.id != id);
+            this.cart.products = this.cart.products.filter((item) => item.id != id);
         }
         else {
             throw new Error("Product to be deleted not found");

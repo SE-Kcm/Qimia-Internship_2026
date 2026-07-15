@@ -1,6 +1,7 @@
 import ShoppingCart from "./controllers/ShoppingCart.js";
 import ShoppingCartService from "./services/ShoppingCartService.js";
 const cart = new ShoppingCart("https://dummyjson.com/carts/3");
+cart.init();
 //Error Handling - Test
 //const cart = new ShoppingCart("https://dummyjson.com/carts/abc");
 // cart.increaseQuantity(1);

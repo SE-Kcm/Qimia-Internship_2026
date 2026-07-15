@@ -10,7 +10,7 @@ export default class ShoppingCart {
     constructor(url) {
         this.ui = new UI();
         this.service = new ShoppingCartService();
-        this.init();
+        //this.init();
     }
     async init() {
         try {
