@@ -13,6 +13,12 @@ export default class QuantityInputField extends InputField {
             }
         });
         this.inpt.addEventListener("blur", () => {
+            if (this.inpt.value.trim() == "") {
+                this.inpt.style.borderColor = "red";
+                alert("Fiel is empty");
+            } else {
+                this.inpt.style.borderColor = "";
+            }
             const value = this.inpt.valueAsNumber;
             if (!isNaN(value)) {
                 inputHandler(value);
