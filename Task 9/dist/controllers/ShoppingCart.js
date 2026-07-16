@@ -1,4 +1,4 @@
-import UI from "./UI.js";
+import UI from "./ShoppingCartUI.js";
 import ShoppingCartService from "../services/ShoppingCartService.js";
 import { initialCart } from "../constants/InitialCart.js";
 import { deleteIconSrc } from "../constants/deleteIcon.js";

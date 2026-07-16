@@ -1,4 +1,4 @@
-import UI from "../controllers/UI.js";
+import UI from "../controllers/ShoppingCartUI.js";
 import ChangeQuantityButton from "./ChangeQuantityButton.js";
 import QuantityInputField from "./QuantityInputField.js";
 export default class CartItem {

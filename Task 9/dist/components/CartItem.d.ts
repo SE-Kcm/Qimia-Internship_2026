@@ -1,4 +1,4 @@
-import UI from "../controllers/UI.js";
+import UI from "../controllers/ShoppingCartUI.js";
 import type { Product } from "../models/Product";
 export default class CartItem {
     product: Product;

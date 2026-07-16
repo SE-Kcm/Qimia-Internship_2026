@@ -5,7 +5,6 @@ export default class QuantityInputField extends InputField {
         super("number", value, id, []);
         this.inpt = this.getElement();
         this.inpt.min = "0";
-        this.inpt.required = true;
         this.inpt.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 this.inpt.blur();
