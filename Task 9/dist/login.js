@@ -1,4 +1,4 @@
-import Login from "./controllers/Login.js";
-const login = new Login();
-login.init();
+import AuthController from "./controllers/AuthController.js";
+const controller = new AuthController();
+controller.init();
 //# sourceMappingURL=login.js.map

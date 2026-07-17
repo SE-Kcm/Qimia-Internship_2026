@@ -1,4 +1,4 @@
-import Login from "./controllers/Login.js";
+import AuthController from "./controllers/AuthController.js";
 
-const login = new Login();
-login.init();
+const controller = new AuthController();
+controller.init();

@@ -5,6 +5,9 @@ export default class ShoppingCartService {
     constructor() { }
     async createInitialCart() {
         const response = await fetch("../mocks/cart.json");
+        if (!response.ok) {
+            throw new Error("Could not load cart.");
+        }
         const cartData = await response.json();
         if (typeof cartData.id != "number" ||
             !Array.isArray(cartData.products) ||

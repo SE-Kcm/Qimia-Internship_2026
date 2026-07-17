@@ -26,36 +26,44 @@
                     <button id="phoneTab" class="tablinks active w-1/2 border-b-4 border-b-gray-400">Telefon Numarası</button>
                 </div>
                 <div id="E-Mail" class="tabcontent">
-                    <form>
+                    <form id="LoginEmailForm">
                         <label>E-posta</label>
-                        <input class="w-full mt-1 mb-3 h-10 text-left p-2" type="email" placeholder="E-posta" />
-                        <input class="button w-full bg-blue-70 h-10" type="submit" value="İleri" />
+                        <input id="email" name="email" class="w-full mt-1 mb-3 h-10 text-left p-2" type="email" placeholder="E-posta" />
+                        <label>Password</label>
+                        <input id="password_email" name="password" class="w-full mt-1 mb-3 h-10 text-left p-2" type="password" placeholder="Password" />
+                        <button class="button w-full bg-blue-70 h-10" type="submit">İleri</button>
                     </form>
                 </div>
                 <div id="Phone" class="tabcontent hidden">
-                    <form>
+                    <form id="LoginPhoneForm">
                         <div class="flex items-center justify-center gap-1">
                             <div class="w-1/3 flex flex-col">
                                 <label>Ülke </label>
-                                <select class="w-full h-10 mt-1 mb-3 px-2 border-2 border-gray-300 bg-white" id="country-code" name="countryCode" required>
+                                <select id="countryCode" class="w-full h-10 mt-1 mb-3 px-2 border-2 border-gray-300 bg-white" id="country-code" name="countryCode" required>
                                     <option value="+90">🇹🇷 +90 (TR)</option>
                                 </select>
-                                <!-- <label for="country">Ülke </label>
-                                <input id="country" class="w-full mt-1 mb-3 h-10 text-left p-2" type="email" placeholder="Ülke" /> -->
                             </div>
                             <div class="w-2/3">
                                 <label for="phoneNumber">Telefon Numarası </label>
-                                <input id="phoneNumber" class="w-full mt-1 mb-3 h-10 text-left p-2" type="tel" placeholder="Cep telefonu numarası" />
+                                <input id="phoneNumber" name="phoneNumber" class="w-full mt-1 mb-3 h-10 text-left p-2" type="tel" placeholder="Cep telefonu numarası" />
                             </div>
                         </div>
-                        <input class="button w-full bg-blue-70 h-10" type="submit" value="İleri" />
+                        <label>Password</label>
+                        <input id="password_phone" name="password" class="w-full mt-1 mb-3 h-10 text-left p-2" type="password" placeholder="Password" />
+                        <button class="button w-full bg-blue-70 h-10" type="submit">İleri</button>
                     </form>
                 </div>
                 <p class="font-semibold text-base mt-4">Cartify hesabınız yok mu? Hemen oluşturun!</p>
-                <a class="flex items-center mt-2" href="signUp.html">Hesap oluştur</a>
+                <a class="flex items-center mt-2 text-blue-700 underline underline-offset-2" href="signUp.html">Hesap oluştur</a>
             </section>
         </main>
-
+        <script type="importmap">
+            {
+                "imports": {
+                    "zod": "https://cdn.jsdelivr.net/npm/zod@4.4.3/+esm"
+                }
+            }
+        </script>
         <script type="module" src="../dist/login.js"></script>
     </body>
 </html>
