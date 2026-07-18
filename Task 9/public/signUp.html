@@ -27,19 +27,23 @@
                 </div>
                 <div id="E-Mail" class="tabcontent">
                     <form id="signUpEmailForm">
+                        <p id="generalErrorEmail" class="Error"></p>
                         <label>E-posta</label>
-                        <input id="email" name="email" class="w-full mt-1 mb-3 h-10 text-left p-2" type="email" placeholder="E-posta" required />
+                        <input id="email" name="email" class="w-full mt-1 h-10 text-left p-2" type="email" placeholder="E-posta" required />
+                        <p id="emailError" class="Error"></p>
                         <label>Password</label>
-                        <input id="password_email" name="password" class="w-full mt-1 mb-3 h-10 text-left p-2" type="password" placeholder="Password" />
+                        <input id="password_email" name="password" class="w-full mt-1 h-10 text-left p-2" type="password" placeholder="Password" required />
+                        <p id="passwordErrorEmail" class="Error"></p>
                         <button class="button w-full bg-blue-70 h-10" type="submit">İleri</button>
                     </form>
                 </div>
                 <div id="Phone" class="tabcontent hidden">
                     <form id="signUpPhoneForm">
+                        <p id="generalErrorPhone" class="Error"></p>
                         <div class="flex items-center justify-center gap-1">
                             <div class="w-1/3 flex flex-col">
                                 <label>Ülke </label>
-                                <select id="countryCode" class="w-full h-10 mt-1 mb-3 px-2 border-2 border-gray-300 bg-white" id="country-code" name="countryCode">
+                                <select id="countryCode" class="w-full h-10 mt-1 mb-3 px-2 border-2 border-gray-300 bg-white" id="country-code" name="countryCode" required>
                                     <option value="+90">🇹🇷 +90 (TR)</option>
                                 </select>
                                 <!-- <label for="country">Ülke </label>
@@ -50,8 +54,10 @@
                                 <input id="phoneNumber" name="phoneNumber" class="w-full mt-1 mb-3 h-10 text-left p-2" type="tel" placeholder="Cep telefonu numarası" required />
                             </div>
                         </div>
+                        <p id="phoneError" class="Error"></p>
                         <label>Password</label>
-                        <input id="password_phone" name="password" class="w-full mt-1 mb-3 h-10 text-left p-2" type="password" placeholder="Password" />
+                        <input id="password_phone" name="password" class="w-full mt-1 mb-3 h-10 text-left p-2" type="password" placeholder="Password" required />
+                        <p id="passwordErrorPhone" class="Error"></p>
                         <button class="button w-full bg-blue-70 h-10" type="submit">İleri</button>
                     </form>
                 </div>
@@ -59,18 +65,29 @@
                 <a class="flex items-center mt-2 text-blue-700 underline underline-offset-2" href="Login.html">Oturum Aç</a>
             </section>
             <section id="step2" class="hidden container max-w-xl px-4 mx-auto text-left">
-                <div class="">
-                    <label for="firstName">Lütfen adınızı girin</label>
-                    <input id="firstName" name="firstName" type="text" value="Ad" class="w-full mt-1 mb-3 h-10 text-left p-2" />
-                    <label for="lastName">Lütfen soyadınızı giriniz</label>
+                <h1>Kişisel Bilgiler</h1>
+                <form id="signUpInformationForm" class="mt-2">
+                    <input id="firstName" name="firstName" type="text" placeholder="Ad" class="w-full mt-1 mb-3 h-10 text-left p-2" />
 
-                    <input id="lastName" name="firstName" type="text" value="Soyad" class="w-full mt-1 mb-3 h-10 text-left p-2" />
-                    <label for="signUpEmail">Lütfen E-posta adresinizi giriniz</label>
-                    <input id="signUpEmail" name="signUpEmail" type="email" value="E-Posta" class="hidden w-full mt-1 mb-3 h-10 text-left p-2" />
-                    <label for="signUpPhone" class="hidden">Lütfen telefon numaranızı giriniz</label>
-
-                    <input id="signUpPhone" name="signUpPhone" type="phone" value="Telefon Numarası" class="w-full mt-1 mb-3 h-10 text-left p-2" />
-                </div>
+                    <input id="lastName" name="lastName" type="text" placeholder="Soyad" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                    <!-- <input id="signUpEmail" name="signUpEmail" type="email" value="E-Posta" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                    <div class="flex items-center justify-center gap-1">
+                        <div class="w-1/3 flex flex-col">
+                            <select id="countryCode" class="w-full h-10 mt-1 mb-3 px-2 border-2 border-gray-300 bg-white" id="country-code" name="countryCode">
+                                <option value="+90">🇹🇷 +90 (TR)</option>
+                            </select>
+                        </div>
+                        <div class="w-2/3">
+                            <input id="signUpPhone" name="signUpPhone" type="tel" value="Telefon Numarası" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                        </div>
+                    </div> -->
+                    <label>Doğum Tarihi:</label>
+                    <input id="birthday" name="birthday" type="date" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                    <input id="country" name="country" type="text" placeholder="Ülke" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                    <input id="city" name="city" type="text" placeholder="Şehir" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                    <input id="address" name="address" type="text" placeholder="Adres" class="w-full mt-1 mb-3 h-10 text-left p-2" />
+                    <button class="button w-full bg-blue-70 h-10" type="submit">İleri</button>
+                </form>
             </section>
         </main>
         <script type="importmap">

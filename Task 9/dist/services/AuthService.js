@@ -13,23 +13,19 @@ export default class AuthService {
             throw new Error("Could not load users.");
         }
         const userData = await response.json();
-        // if (
-        //     typeof userData.id != "number" ||
-        //     typeof userData.firstName != "string" ||
-        //     typeof userData.lastName != "string" ||
-        //     typeof userData.email != "string" ||
-        //     typeof userData.password != "string" ||
-        //     typeof userData.countryCode != "string" ||
-        //     typeof userData.phoneNumber != "string"
-        // ) {
-        //     throw new Error("Invalid User data!");
-        // }
         const UsersSchema = z.array(UserSchema);
         const results = UsersSchema.safeParse(userData);
         if (!results.success) {
             throw new Error("Validation of User data failed!");
         }
-        this.users = results.data;
+        const storedUsers = sessionStorage.getItem("users");
+        if (storedUsers) {
+            this.users = JSON.parse(storedUsers);
+        }
+        else {
+            this.users = results.data;
+            sessionStorage.setItem("users", JSON.stringify(this.users));
+        }
         const lastUser = this.users[this.users.length - 1];
         if (lastUser) {
             this.nextId = lastUser.id + 1;
@@ -50,16 +46,16 @@ export default class AuthService {
     signUpRequest(credentials) {
         for (const user of this.users) {
             if ("email" in credentials) {
-                if ("email" in user && user.email != credentials.email) {
-                    return true;
+                if ("email" in user && user.email == credentials.email) {
+                    return false;
                 }
             }
             else if ("phoneNumber" in user && "phoneNumber" in credentials)
-                if (user.countryCode != credentials.countryCode && user.phoneNumber != credentials.phoneNumber) {
-                    return true;
+                if (user.countryCode == credentials.countryCode && user.phoneNumber == credentials.phoneNumber) {
+                    return false;
                 }
         }
-        return false;
+        return true;
     }
     createAccount(credentials) {
         let user;
@@ -71,6 +67,10 @@ export default class AuthService {
             };
             this.nextId++;
             this.users.push(user);
+            sessionStorage.setItem("users", JSON.stringify(this.users));
+            console.log("Credentials:", credentials);
+            console.log("Users:", this.users);
+            return user.id;
         }
         else if ("phoneNumber" in credentials) {
             user = {
@@ -81,9 +81,21 @@ export default class AuthService {
             };
             this.nextId++;
             this.users.push(user);
+            sessionStorage.setItem("users", JSON.stringify(this.users));
+            console.log("Credentials:", credentials);
+            console.log("Users:", this.users);
+            return user.id;
         }
-        console.log("Credentials:", credentials);
-        console.log("Users:", this.users);
+        return -1;
+    }
+    saveUserInformation(userId, newUserInfo) {
+        console.log("in SaveInformation");
+        const user = this.users.find((user) => user.id == userId);
+        if (user != undefined) {
+            user.userInformation = newUserInfo;
+            console.log(user);
+            sessionStorage.setItem("users", JSON.stringify(this.users));
+        }
     }
 }
 //# sourceMappingURL=AuthService.js.map

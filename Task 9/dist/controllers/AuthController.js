@@ -39,15 +39,22 @@ export default class AuthController {
                 const password = formData.get("password");
                 const result = AuthSchema.safeParse({ email, password });
                 if (!result.success) {
-                    alert(result.error);
+                    for (const error of result.error.issues) {
+                        this.ui.addErrorMessage("email", error.path[0], error.message);
+                        console.log(error.message);
+                    }
                     return;
+                }
+                else {
+                    this.ui.removeErrorMessage("email", "specific");
                 }
                 if (this.service.login(result.data)) {
                     console.log("Found user");
+                    this.ui.removeErrorMessage("email", "general");
                     //TODO
                 }
                 else {
-                    alert("Invalid Credentials!");
+                    this.ui.addErrorMessage("email", "general", "Girdiğiniz bilgiler hatalı. Lütfen tekrar deneyiniz.");
                 }
             });
         } //LoginEmailForm does not have to exists because AuthController is being used for Login.html and signUp.html --> don't throw Error
@@ -59,15 +66,22 @@ export default class AuthController {
                 const password = formData.get("password");
                 const result = AuthSchema.safeParse({ countryCode, phoneNumber, password });
                 if (!result.success) {
-                    alert(result.error);
+                    for (const error of result.error.issues) {
+                        this.ui.addErrorMessage("phone", error.path[0], error.message);
+                        console.log(error.message);
+                    }
                     return;
+                }
+                else {
+                    this.ui.removeErrorMessage("phone", "specific");
                 }
                 if (this.service.login(result.data)) {
                     console.log("Found user");
+                    this.ui.removeErrorMessage("phone", "general");
                     //TODO
                 }
                 else {
-                    alert("Invalid Credentials!");
+                    this.ui.addErrorMessage("phone", "general", "Girdiğiniz bilgiler hatalı. Lütfen tekrar deneyiniz.");
                 }
             });
         } //LoginPhoneForm does not have to exists because AuthController is being used for Login.html and signUp.html --> don't throw Error
@@ -78,14 +92,39 @@ export default class AuthController {
                 const password = formData.get("password");
                 const result = AuthSchema.safeParse({ email, password });
                 if (!result.success) {
-                    alert(result.error);
+                    for (const error of result.error.issues) {
+                        this.ui.addErrorMessage("email", error.path[0], error.message);
+                        console.log(error.message);
+                    }
                     return;
                 }
+                else {
+                    this.ui.removeErrorMessage("email", "specific");
+                }
                 if (this.service.signUpRequest(result.data)) {
-                    this.service.createAccount(result.data);
+                    this.ui.removeErrorMessage("email", "general");
+                    const userId = this.service.createAccount(result.data);
+                    if (userId != -1) {
+                        this.ui.showSecondPage();
+                        const signUpInformationForm = document.getElementById("signUpInformationForm");
+                        if (signUpInformationForm) {
+                            this.registerForm(signUpInformationForm, (formData) => {
+                                const firstName = formData.get("firstName");
+                                const lastName = formData.get("lastName");
+                                // const countryCode = formData.get("countryCode") as string;
+                                // const phoneNumber = formData.get("phoneNumber") as string;
+                                const birthday = formData.get("birthday");
+                                const country = formData.get("country");
+                                const city = formData.get("city");
+                                const address = formData.get("address");
+                                const newUserInfo = { firstName, lastName, birthday, country, city, address };
+                                this.service.saveUserInformation(userId, newUserInfo);
+                            });
+                        }
+                    }
                 }
                 else {
-                    console.log("Invalid Credentials!");
+                    this.ui.addErrorMessage("email", "general", "Girdiğiniz bilgiler hatalı. Lütfen tekrar deneyiniz.");
                 }
             });
         } //signUpEmailForm does not have to exists because AuthController is being used for Login.html and signUp.html --> don't throw Error
@@ -93,18 +132,44 @@ export default class AuthController {
         if (signUpPhoneForm) {
             this.registerForm(signUpPhoneForm, (formData) => {
                 const countryCode = formData.get("countryCode");
-                const phone = formData.get("phoneNumber");
+                const phoneNumber = formData.get("phoneNumber");
                 const password = formData.get("password");
-                const result = AuthSchema.safeParse({ countryCode, phone, password });
+                // console.log({ countryCode, phone, password });
+                const result = AuthSchema.safeParse({ countryCode, phoneNumber, password });
                 if (!result.success) {
-                    alert(result.error);
+                    for (const error of result.error.issues) {
+                        this.ui.addErrorMessage("phone", error.path[0], error.message);
+                        console.log(error.message);
+                    }
                     return;
                 }
+                else {
+                    this.ui.removeErrorMessage("phone", "specific");
+                }
                 if (this.service.signUpRequest(result.data)) {
-                    this.service.createAccount(result.data);
+                    this.ui.removeErrorMessage("phone", "general");
+                    const userId = this.service.createAccount(result.data);
+                    if (userId != -1) {
+                        this.ui.showSecondPage();
+                        const signUpInformationForm = document.getElementById("signUpInformationForm");
+                        if (signUpInformationForm) {
+                            this.registerForm(signUpInformationForm, (formData) => {
+                                const firstName = formData.get("firstName");
+                                const lastName = formData.get("lastName");
+                                // const countryCode = formData.get("countryCode") as string;
+                                // const phoneNumber = formData.get("phoneNumber") as string;
+                                const birthday = formData.get("birthday");
+                                const country = formData.get("country");
+                                const city = formData.get("city");
+                                const address = formData.get("address");
+                                const newUserInfo = { firstName, lastName, birthday, country, city, address };
+                                this.service.saveUserInformation(userId, newUserInfo);
+                            });
+                        }
+                    }
                 }
                 else {
-                    console.log("Invalid Credentials!");
+                    this.ui.addErrorMessage("phone", "general", "Girdiğiniz bilgiler hatalı. Lütfen tekrar deneyiniz.");
                 }
             });
         } //signUpPhoneForm does not have to exists because AuthController is being used for Login.html and signUp.html --> don't throw Error

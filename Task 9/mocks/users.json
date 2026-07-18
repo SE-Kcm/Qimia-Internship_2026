@@ -1,11 +1,17 @@
 [
     {
         "id": 1,
-        "firstName": "John",
-        "lastName": "Doe",
         "email": "johndoe@test.com",
-        "password": "password",
         "countryCode": "+90",
-        "phoneNumber": "123456789"
+        "phoneNumber": "1234567890",
+        "password": "password",
+        "userInformation": {
+            "firstName": "John",
+            "lastName": "Doe",
+            "birthday": "2000-01-01",
+            "country": "Türkiye",
+            "city": "Ankara",
+            "address": "İsmet İnönü Caddesi No: 31 Daire: 11"
+        }
     }
 ]

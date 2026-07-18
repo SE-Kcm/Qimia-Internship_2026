@@ -78,4 +78,8 @@
     .button {
         @apply flex justify-center items-center text-center bg-blue-800 font-bold text-white h-10 w-full;
     }
+
+    .Error {
+        @apply text-sm text-red-700 mb-2;
+    }
 }
