@@ -1,6 +1,4 @@
 import { AuthSchema, type AuthType } from "../models/AuthSchema.js";
-import { EmailAuthSchema, type EmailAuth } from "../models/EmailAuthSchema.js";
-import { PhoneAuthSchema, type PhoneAuth } from "../models/PhoneAuthSchema.js";
 import AuthService from "../services/AuthService.js";
 import UI from "./LoginUI.js";
 // import * as z from "zod";

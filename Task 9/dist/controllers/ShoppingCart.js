@@ -15,6 +15,13 @@ export default class ShoppingCart {
     async init() {
         try {
             this.ui.showSkeleton();
+            const currentUser = localStorage.getItem("currentUser");
+            if (currentUser) {
+                this.ui.addUserName(currentUser);
+            }
+            else {
+                this.ui.addUserName(null);
+            }
             await this.service.createInitialCart();
             this.cart = this.service.getCart();
             //await new Promise((resolve) => setTimeout(resolve, 2000));

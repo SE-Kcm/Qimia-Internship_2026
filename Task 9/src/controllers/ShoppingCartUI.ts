@@ -164,4 +164,30 @@ export default class UI {
             productList.classList.remove("hidden");
         }
     }
+
+    addUserName(currentUser: string | null) {
+        let aElement = document.getElementById("currentUserName") as HTMLLinkElement;
+        if (currentUser != null) {
+            const current = JSON.parse(currentUser);
+            if (current.userInformation) {
+                //let pElement = document.getElementById("userName");
+                if (aElement) {
+                    console.log("in if pElement");
+                    if (current.userInformation.firstName) {
+                        aElement.textContent = current.userInformation.firstName;
+                    } else {
+                        aElement.textContent = "User" + current.id;
+                    }
+                    //TODO: link to profile edit page
+                    aElement.href = "";
+                }
+            }
+        } else {
+            console.log("in else");
+            if (aElement) {
+                aElement.textContent = "Giriş Yap";
+                aElement.href = "Login.html";
+            }
+        }
+    }
 }

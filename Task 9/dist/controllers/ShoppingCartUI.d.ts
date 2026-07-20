@@ -17,5 +17,6 @@ export default class UI {
     imagesLoaded(): Promise<void>;
     showSkeleton(): void;
     hideSkeleton(): void;
+    addUserName(currentUser: string | null): void;
 }
 //# sourceMappingURL=ShoppingCartUI.d.ts.map

@@ -1,3 +1,5 @@
+import type { User } from "../models/User";
+
 export default class LoginUI {
     openLoginOptions(optionName: string, activeButton: HTMLButtonElement) {
         const tabContents = document.getElementsByClassName("tabcontent");

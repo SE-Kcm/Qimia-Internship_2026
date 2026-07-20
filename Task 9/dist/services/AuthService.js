@@ -1,4 +1,3 @@
-import { EmailAuthSchema } from "../models/EmailAuthSchema.js";
 import { UserSchema } from "../models/User.js";
 import { z } from "zod";
 export default class AuthService {
@@ -37,6 +36,7 @@ export default class AuthService {
             if ((("email" in credentials && "email" in user && user.email === credentials.email) ||
                 ("phoneNumber" in credentials && "phoneNumber" in user && user.phoneNumber === credentials.phoneNumber && user.countryCode == credentials.countryCode)) &&
                 user.password === credentials.password) {
+                localStorage.setItem("currentUser", JSON.stringify(user));
                 return true;
             }
         }

@@ -1,8 +1,6 @@
-import { EmailAuthSchema, type EmailAuth } from "../models/EmailAuthSchema.js";
 import { UserSchema, type User } from "../models/User.js";
 import { z } from "zod";
 //import { z } from "https://esm.sh";
-import type { PhoneAuth } from "../models/PhoneAuthSchema.js";
 import type { AuthType } from "../models/AuthSchema.js";
 import type { UserInformation } from "../models/UserInformation.js";
 
@@ -47,6 +45,7 @@ export default class AuthService {
                     ("phoneNumber" in credentials && "phoneNumber" in user && user.phoneNumber === credentials.phoneNumber && user.countryCode == credentials.countryCode)) &&
                 user.password === credentials.password
             ) {
+                localStorage.setItem("currentUser", JSON.stringify(user));
                 return true;
             }
         }
