@@ -40,7 +40,6 @@ export default class AuthService {
     }
 
     login(credentials: AuthType): boolean {
-        console.log("Credentials:", credentials);
         console.log("Users:", this.users);
         for (const user of this.users) {
             if (
@@ -78,7 +77,6 @@ export default class AuthService {
             this.nextId++;
             this.users.push(user);
             sessionStorage.setItem("users", JSON.stringify(this.users));
-            console.log("Credentials:", credentials);
             console.log("Users:", this.users);
             return user.id;
         } else if ("phoneNumber" in credentials) {
@@ -91,7 +89,6 @@ export default class AuthService {
             this.nextId++;
             this.users.push(user);
             sessionStorage.setItem("users", JSON.stringify(this.users));
-            console.log("Credentials:", credentials);
             console.log("Users:", this.users);
             return user.id;
         }

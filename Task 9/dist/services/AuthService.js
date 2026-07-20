@@ -32,7 +32,6 @@ export default class AuthService {
         }
     }
     login(credentials) {
-        console.log("Credentials:", credentials);
         console.log("Users:", this.users);
         for (const user of this.users) {
             if ((("email" in credentials && "email" in user && user.email === credentials.email) ||
@@ -68,7 +67,6 @@ export default class AuthService {
             this.nextId++;
             this.users.push(user);
             sessionStorage.setItem("users", JSON.stringify(this.users));
-            console.log("Credentials:", credentials);
             console.log("Users:", this.users);
             return user.id;
         }
@@ -82,7 +80,6 @@ export default class AuthService {
             this.nextId++;
             this.users.push(user);
             sessionStorage.setItem("users", JSON.stringify(this.users));
-            console.log("Credentials:", credentials);
             console.log("Users:", this.users);
             return user.id;
         }
