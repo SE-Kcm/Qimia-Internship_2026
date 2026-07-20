@@ -70,6 +70,10 @@ export default class LoginUI {
             if (emailError) {
                 emailError.textContent = "";
             }
+            const phoneError = document.getElementById("phoneError");
+            if (phoneError) {
+                phoneError.textContent = "";
+            }
             let passwordError;
             if (tab === "email") {
                 passwordError = document.getElementById("passwordErrorEmail");

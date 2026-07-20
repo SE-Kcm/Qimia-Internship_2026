@@ -6,7 +6,7 @@ export const AuthSchema = z
     phoneNumber: z
         .string()
         .trim()
-        .regex(/^[1-9][0-9]+$/, "sadece rakam")
+        .regex(/^[1-9][0-9]+$/)
         .min(10, "Geçerli bir telefon numarası giriniz.")
         .optional(),
     password: z.string().min(8, "Şifre en az 8 karakterden oluşmalıdır."),
