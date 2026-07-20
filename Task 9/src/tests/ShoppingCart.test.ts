@@ -1,11 +1,3 @@
-// export function sum(a: number, b: number): number {
-//     return a + b;
-// }
-// describe("sum()", () => {
-//     test("adds two numbers", () => {
-//         expect(sum(2, 3)).toBe(5);
-//     });
-
 import type { Product } from "@/models/Product";
 import ShoppingCart from "../controllers/ShoppingCart";
 import type { Cart } from "../models/Cart";
@@ -129,7 +121,11 @@ describe("ShoppingCartService", () => {
     });
 
     test("Should increase quantity of product", () => {
-        expect(service.increaseQuantity(24).quantity).toEqual(2);
+        const product = service.increaseQuantity(24);
+        expect(product.quantity).toEqual(2);
+        expect(product.total).toEqual(29.98);
+        expect(service.getCart().total).toEqual(29.98);
+        expect(service.getCart().totalQuantity).toEqual(2);
     });
     test("Should throw an error if product to be updated cannot be found", () => {
         expect(() => {
@@ -162,13 +158,12 @@ describe("ShoppingCartService", () => {
             totalProducts: 1,
             totalQuantity: 2,
         };
-        global.fetch = jest.fn().mockResolvedValue({
-            ok: true,
-            json: async () => ({
-                ...mockCart,
-            }),
-        });
-        expect(service.decreaseQuantity(24).quantity).toEqual(1);
+        service.cart = mockCart;
+        const product = service.decreaseQuantity(24);
+        expect(product.quantity).toEqual(1);
+        expect(product.total).toEqual(14.99);
+        expect(service.getCart().total).toEqual(14.99);
+        expect(service.getCart().totalQuantity).toEqual(1);
     });
     test("Should throw an error if product to be updated cannot be found", () => {
         expect(() => {
@@ -177,7 +172,11 @@ describe("ShoppingCartService", () => {
     });
 
     test("Should change quantity of product", () => {
-        expect(service.changeQuantity(24, 2).quantity).toEqual(2);
+        const product = service.changeQuantity(24, 2);
+        expect(product.quantity).toEqual(2);
+        expect(product.total).toEqual(29.98);
+        expect(service.getCart().total).toEqual(29.98);
+        expect(service.getCart().totalQuantity).toEqual(2);
     });
 
     test("Should throw an error if product to be updated cannot be found", () => {
@@ -188,6 +187,8 @@ describe("ShoppingCartService", () => {
     test("Should delete product", () => {
         service.deleteProducts(24);
         expect(service.getAllProducts().length).toEqual(0);
+        expect(service.getCart().total).toEqual(0.0);
+        expect(service.getCart().totalQuantity).toEqual(0);
     });
 
     test("Should throw an error if product to be deleted cannot be found", () => {
