@@ -127,4 +127,41 @@ export default class UI {
             }
         }
     }
+
+    async imagesLoaded(): Promise<void> {
+        const images = document.querySelectorAll<HTMLImageElement>("#productList img");
+        const promises: Promise<void>[] = [];
+        for (const image of images) {
+            const promise = new Promise<void>((resolve) => {
+                if (image.complete) {
+                    resolve();
+                } else {
+                    image.onload = () => resolve();
+                }
+            });
+            promises.push(promise);
+        }
+
+        await Promise.all(promises);
+    }
+    showSkeleton() {
+        const skeleton = document.getElementById("skeleton");
+        if (skeleton) {
+            skeleton.classList.remove("hidden");
+        }
+        const productList = document.getElementById("productList");
+        if (productList) {
+            productList.classList.add("hidden");
+        }
+    }
+    hideSkeleton() {
+        const skeleton = document.getElementById("skeleton");
+        if (skeleton) {
+            skeleton.classList.add("hidden");
+        }
+        const productList = document.getElementById("productList");
+        if (productList) {
+            productList.classList.remove("hidden");
+        }
+    }
 }

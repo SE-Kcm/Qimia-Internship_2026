@@ -14,9 +14,13 @@ export default class ShoppingCart {
     }
     async init() {
         try {
+            this.ui.showSkeleton();
             await this.service.createInitialCart();
             this.cart = this.service.getCart();
+            //await new Promise((resolve) => setTimeout(resolve, 2000));
             this.listProducts();
+            await this.ui.imagesLoaded();
+            this.ui.hideSkeleton();
         }
         catch (error) {
             console.error(error);

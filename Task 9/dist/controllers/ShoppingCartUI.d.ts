@@ -14,5 +14,8 @@ export default class UI {
     showLoader(id: number): void;
     hideLoader(id: number): void;
     toggle(toggle: boolean): void;
+    imagesLoaded(): Promise<void>;
+    showSkeleton(): void;
+    hideSkeleton(): void;
 }
 //# sourceMappingURL=ShoppingCartUI.d.ts.map

@@ -152,12 +152,6 @@ describe("ShoppingCartService", () => {
             totalProducts: 1,
             totalQuantity: 2,
         };
-        // global.fetch = jest.fn().mockResolvedValue({
-        //     ok: true,
-        //     json: async () => ({
-        //         ...mockCart,
-        //     }),
-        // });
         service.cart = mockCart;
         const product = service.decreaseQuantity(24);
         expect(product.quantity).toEqual(1);

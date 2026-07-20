@@ -40,7 +40,7 @@ export default class CartItem {
     }
 
     createProductImage(id: number): HTMLElement {
-        const imgBox = this.ui.createDiv("imgageBox", id);
+        const imgBox = this.ui.createDiv("imageBox", id);
         const img = this.ui.createImage(this.product.thumbnail);
         imgBox.appendChild(img);
         return imgBox;

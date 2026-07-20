@@ -25,28 +25,70 @@
                     <p class="header text-center">ADET</p>
                     <p class="header text-center">TOPLAM FIYAT</p>
                 </div>
-                <div id="productList" class="productList divide-y divide-gray-200 lg:max-h-[500px] lg:overflow-y-auto mt-4 lg:mt-0">
-                    <!-- <article class="productBox grid lg:grid-cols-5 grid-cols-2 bg-white items-center relative">
-                        <div class="imageBox w-20 m-2">
-                            <img src="images/yetiskin-badminton-raket-seti-turkuazturuncu-br100-ad.avif" />
-                        </div>
-                        <div class="productDetails lg:contents">
-                            <p class="lg:pr-0 pr-5">TITLE TITLE TITLE TITLE TITLE</p>
-                            <button class="absolute top-1 right-1">n
-                                <img src="images/delete-icon.png" />
-                            </button>
-                            <p><span class="lg:hidden">Birim Fiyat: </span>14.99$</p>
-                            <div class="countBox flex gap-1 items-center">
-                                <button class="btn">-</button>
-                                <p class="count">5</p>
-                                <button class="btn">+</button>
+                <div id="List">
+                    <div class="hidden" id="skeleton">
+                        <article class="productBox bg-transparent" id="skeletonBox1">
+                            <div class="imageBox h-20">
+                                <div class="skeleton w-full h-full"></div>
                             </div>
-                            <p>TITLE</p>
-                        </div>
-                        <button class="absolute top-1 right-1">
-                            <img src="images/delete-icon.png" />
-                        </button>
-                    </article> -->
+                            <div class="productDetails">
+                                <p class="skeleton w-3/4 h-4"></p>
+                                <p class="skeleton w-3/4 h-4"><span class="lg:hidden skeleton"></span></p>
+                                <div class="quantityBox"><button class="btn skeleton"></button><input class="skeleton" type="number" min="0" /><button class="btn skeleton"></button></div>
+                                <div class="totalDiv">
+                                    <div class="spinner hidden"></div>
+                                    <p class="total skeleton w-3/4 h-4" id="total24"><span class="lg:hidden"></span><span class="totalValue"></span></p>
+                                </div>
+                            </div>
+                            <button class="btn-close skeleton w-5 h-5"></button>
+                        </article>
+                        <article class="productBox bg-transparent">
+                            <div class="imageBox h-20">
+                                <div class="skeleton w-full h-full"></div>
+                            </div>
+                            <div class="productDetails">
+                                <p class="skeleton w-3/4 h-4"></p>
+                                <p class="skeleton w-3/4 h-4"><span class="lg:hidden skeleton"></span></p>
+                                <div class="quantityBox"><button class="btn skeleton"></button><input class="skeleton" type="number" min="0" /><button class="btn skeleton"></button></div>
+                                <div class="totalDiv">
+                                    <div class="spinner hidden"></div>
+                                    <p class="total skeleton w-3/4 h-4"><span class="lg:hidden"></span><span class="totalValue"></span></p>
+                                </div>
+                            </div>
+                            <button class="btn-close skeleton w-5 h-5"></button>
+                        </article>
+                        <article class="productBox bg-transparent" id="skeletonBox3">
+                            <div class="imageBox h-20">
+                                <div class="skeleton w-full h-full"></div>
+                            </div>
+                            <div class="productDetails">
+                                <p class="skeleton w-3/4 h-4"></p>
+                                <p class="skeleton w-3/4 h-4"><span class="lg:hidden skeleton"></span></p>
+                                <div class="quantityBox"><button class="btn skeleton"></button><input class="skeleton" type="number" min="0" /><button class="btn skeleton"></button></div>
+                                <div class="totalDiv">
+                                    <div class="spinner hidden"></div>
+                                    <p class="total skeleton w-3/4 h-4"><span class="lg:hidden"></span><span class="totalValue"></span></p>
+                                </div>
+                            </div>
+                            <button class="btn-close skeleton w-5 h-5"></button>
+                        </article>
+                        <article class="productBox bg-transparent" id="skeletonBox34">
+                            <div class="imageBox h-20">
+                                <div class="skeleton w-full h-full"></div>
+                            </div>
+                            <div class="productDetails">
+                                <p class="skeleton w-3/4 h-4"></p>
+                                <p class="skeleton w-3/4 h-4"><span class="lg:hidden skeleton"></span></p>
+                                <div class="quantityBox"><button class="btn skeleton"></button><input class="skeleton" type="number" min="0" /><button class="btn skeleton"></button></div>
+                                <div class="totalDiv">
+                                    <div class="spinner hidden"></div>
+                                    <p class="total skeleton w-3/4 h-4"><span class="lg:hidden"></span><span class="totalValue"></span></p>
+                                </div>
+                            </div>
+                            <button class="btn-close skeleton w-5 h-5"></button>
+                        </article>
+                    </div>
+                    <div id="productList" class="productList divide-y divide-gray-200 lg:max-h-[500px] lg:overflow-y-auto mt-4 lg:mt-0"></div>
                 </div>
             </section>
             <aside id="summary" class="summary lg:col-span-1 h-fit">

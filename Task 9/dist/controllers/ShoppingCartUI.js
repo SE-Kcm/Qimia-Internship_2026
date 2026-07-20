@@ -115,5 +115,41 @@ export default class UI {
             }
         }
     }
+    async imagesLoaded() {
+        const images = document.querySelectorAll("#productList img");
+        const promises = [];
+        for (const image of images) {
+            const promise = new Promise((resolve) => {
+                if (image.complete) {
+                    resolve();
+                }
+                else {
+                    image.onload = () => resolve();
+                }
+            });
+            promises.push(promise);
+        }
+        await Promise.all(promises);
+    }
+    showSkeleton() {
+        const skeleton = document.getElementById("skeleton");
+        if (skeleton) {
+            skeleton.classList.remove("hidden");
+        }
+        const productList = document.getElementById("productList");
+        if (productList) {
+            productList.classList.add("hidden");
+        }
+    }
+    hideSkeleton() {
+        const skeleton = document.getElementById("skeleton");
+        if (skeleton) {
+            skeleton.classList.add("hidden");
+        }
+        const productList = document.getElementById("productList");
+        if (productList) {
+            productList.classList.remove("hidden");
+        }
+    }
 }
 //# sourceMappingURL=ShoppingCartUI.js.map
