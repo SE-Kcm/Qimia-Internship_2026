@@ -127,7 +127,7 @@ export default class AuthController {
                             }
                         }
                     } else {
-                        this.ui.addErrorMessage("email", "general", "Girdiğiniz bilgiler hatalı. Lütfen tekrar deneyiniz.");
+                        this.ui.addErrorMessage("email", "general", "Bu e-posta adresiyle zaten bir hesap bulunmaktadır.");
                     }
                 });
             } //signUpEmailForm does not have to exists because AuthController is being used for Login.html and signUp.html --> don't throw Error
@@ -172,7 +172,7 @@ export default class AuthController {
                             }
                         }
                     } else {
-                        this.ui.addErrorMessage("phone", "general", "Girdiğiniz bilgiler hatalı. Lütfen tekrar deneyiniz.");
+                        this.ui.addErrorMessage("phone", "general", "Bu telefon numarasıyla zaten bir hesap bulunmaktadır.");
                     }
                 });
             } //signUpPhoneForm does not have to exists because AuthController is being used for Login.html and signUp.html --> don't throw Error
