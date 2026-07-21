@@ -5,6 +5,7 @@ import { initialCart } from "../constants/InitialCart.js";
 import { deleteIconSrc } from "../constants/deleteIcon.js";
 import CartItem from "../components/CartItem.js";
 import type { Product } from "../models/Product.js";
+import Skeleton from "../components/Skeleton.js";
 
 export default class ShoppingCart {
     ui: UI;
@@ -18,6 +19,7 @@ export default class ShoppingCart {
 
     async init() {
         try {
+            this.ui.createSkeleton(4);
             this.ui.showSkeleton();
             const currentUser = localStorage.getItem("currentUser");
             if (currentUser) {
@@ -134,6 +136,9 @@ export default class ShoppingCart {
             this.ui.updateCartTotal(this.cart.total);
             this.ui.updateCartSubTotal(this.cart.total);
             this.ui.updateCartQuantity(this.cart.totalQuantity);
+
+            this.ui.slide(id);
+
             this.ui.deleteProductBox(id);
         } catch (error) {
             console.error(error);

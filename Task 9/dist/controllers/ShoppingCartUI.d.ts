@@ -15,8 +15,10 @@ export default class UI {
     hideLoader(id: number): void;
     toggle(toggle: boolean): void;
     imagesLoaded(): Promise<void>;
+    createSkeleton(amount: number): void;
     showSkeleton(): void;
     hideSkeleton(): void;
     addUserName(currentUser: string | null): void;
+    slide(id: number): void;
 }
 //# sourceMappingURL=ShoppingCartUI.d.ts.map

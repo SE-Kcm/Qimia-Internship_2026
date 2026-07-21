@@ -1,3 +1,5 @@
+import Skeleton from "../components/Skeleton.js";
+
 export default class UI {
     createDiv(divName: string, id: number): HTMLDivElement {
         const div = document.createElement("div");
@@ -142,8 +144,55 @@ export default class UI {
             promises.push(promise);
         }
 
-        await Promise.all(promises);
+        await Promise.allSettled(promises);
     }
+
+    createSkeleton(amount: number) {
+        const skeleton = document.getElementById("skeleton");
+        if (skeleton) {
+            for (let i = 0; i < amount; i++) {
+                const skeletnBox = document.createElement("article");
+                skeletnBox.classList.add("productBox", "bg-transparent");
+
+                const imageBox = document.createElement("div");
+                imageBox.classList.add("imageBox", "h-20");
+                const skeletonImage = new Skeleton().create("w-full", "h-full");
+                imageBox.appendChild(skeletonImage);
+
+                const details = document.createElement("div");
+                details.classList.add("productDetails");
+                const skeletonTitle = new Skeleton().create("w-3/4", "h-4");
+                const skeletonPrice = new Skeleton().create("w-3/4", "h-4");
+
+                const quantityBox = document.createElement("div");
+                quantityBox.classList.add("quantityBox");
+                const skeletonDecreaseButton = new Skeleton().create("w-7", "h-7");
+                const skeletonInput = new Skeleton().create("w-7", "h-7");
+                const skeletonIncreaseButton = new Skeleton().create("w-7", "h-7");
+                quantityBox.appendChild(skeletonDecreaseButton);
+                quantityBox.appendChild(skeletonInput);
+                quantityBox.appendChild(skeletonIncreaseButton);
+
+                const skeletonTotal = new Skeleton().create("w-3/4", "h-4");
+                skeletonTotal.classList.add("total");
+
+                details.appendChild(skeletonTitle);
+                details.appendChild(skeletonPrice);
+                details.appendChild(quantityBox);
+                details.appendChild(skeletonTotal);
+
+                const skeletonCloseButton = new Skeleton().create("w-5", "h-5");
+                skeletonCloseButton.classList.add("btn-close");
+
+                skeletnBox.appendChild(imageBox);
+                skeletnBox.appendChild(details);
+                skeletnBox.appendChild(skeletonCloseButton);
+
+                skeleton.appendChild(skeletnBox);
+            }
+        }
+    }
+
     showSkeleton() {
         const skeleton = document.getElementById("skeleton");
         if (skeleton) {
@@ -188,6 +237,13 @@ export default class UI {
                 aElement.textContent = "Giriş Yap";
                 aElement.href = "Login.html";
             }
+        }
+    }
+
+    slide(id: number) {
+        const product = document.getElementById(id.toString());
+        if (product) {
+            product.classList.add("transition-transform -translate-x-full");
         }
     }
 }
